@@ -1,0 +1,39 @@
+.peak-footer {
+	margin-block-start: var(--wp--preset--spacing--70);
+}
+
+.peak-hills {
+	display: block;
+	width: 100%;
+	height: clamp(80px, 12vw, 200px);
+	margin-bottom: -1px;
+}
+
+.peak-hills__1 { fill: var(--wp--custom--hill--1); }
+.peak-hills__2 { fill: var(--wp--custom--hill--2); }
+.peak-hills__3 { fill: var(--wp--custom--hill--3); }
+
+.peak-valley {
+	background: var(--wp--custom--hill--3);
+	color: var(--wp--custom--valley--text);
+	padding-block: var(--wp--preset--spacing--50);
+}
+
+.peak-valley a {
+	color: var(--wp--custom--valley--accent);
+}
+
+.peak-valley :where(h1, h2, h3, h4) {
+	color: var(--wp--custom--valley--text);
+}
+
+.peak-valley .wp-block-social-links .wp-social-link {
+	color: var(--wp--custom--valley--text);
+	background: none;
+}
+
+.peak-footer__colophon {
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	margin: 0;
+}

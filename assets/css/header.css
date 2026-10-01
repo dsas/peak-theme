@@ -1,0 +1,26 @@
+.peak-header {
+	position: relative;
+	isolation: isolate;
+	padding-block: var(--wp--preset--spacing--40);
+}
+
+/* Engineer's notebook grid, fading out. Visible only when the colourway sets grid opacity. */
+.peak-header::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: 240px;
+	z-index: -1;
+	pointer-events: none;
+	opacity: var(--wp--custom--grid--opacity, 0);
+	background-image:
+		linear-gradient(var(--wp--custom--grid--color) 1px, transparent 1px),
+		linear-gradient(90deg, var(--wp--custom--grid--color) 1px, transparent 1px);
+	background-size: 16px 16px;
+	-webkit-mask-image: linear-gradient(#000 10%, transparent);
+	mask-image: linear-gradient(#000 10%, transparent);
+}
+
+.peak-header .wp-block-site-title {
+	margin: 0;
+}
