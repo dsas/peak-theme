@@ -30,10 +30,15 @@ add_filter(
 add_filter(
 	'post_thumbnail_id',
 	function ( $thumbnail_id, $post ) {
-		if ( $thumbnail_id || ! $post || ! Formats\is_photo_format( get_post_format( $post ) ) ) {
+		if ( ! $post || ! Formats\is_photo_format( get_post_format( $post ) ) ) {
 			return $thumbnail_id;
 		}
-		return Formats\first_image_id( parse_blocks( get_post( $post )->post_content ) ) ?: $thumbnail_id;
+		if ( $thumbnail_id && wp_attachment_is_image( $thumbnail_id ) ) {
+			return $thumbnail_id;
+		}
+		// A missing or non-image attachment counts as no featured image.
+		$first = Formats\first_image_id( parse_blocks( get_post( $post )->post_content ) );
+		return $first && wp_attachment_is_image( $first ) ? $first : 0;
 	},
 	10,
 	2

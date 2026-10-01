@@ -24,14 +24,26 @@ add_filter(
 		if ( ! str_contains( $block['attrs']['className'] ?? '', 'is-style-justified' ) ) {
 			return $html;
 		}
-		$tags = new \WP_HTML_Tag_Processor( $html );
-		while ( $tags->next_tag( 'li' ) ) {
+		$tags  = new \WP_HTML_Tag_Processor( $html );
+		$ratio = 0.0;
+		while ( $tags->next_tag() ) {
+			$tag = $tags->get_tag();
+			if ( 'IMG' === $tag && $ratio ) {
+				// Size hint matching the tile's rendered width, so wide tiles don't get the 768w source.
+				$tags->set_attribute( 'sizes', Aspect\sizes_attr( $ratio ) );
+				continue;
+			}
+			if ( 'LI' !== $tag ) {
+				continue;
+			}
+			$ratio   = 0.0;
 			$post_id = Aspect\post_id_from_class( (string) $tags->get_attribute( 'class' ) );
 			if ( ! $post_id ) {
 				continue;
 			}
 			$thumb = (int) get_post_thumbnail_id( $post_id );
-			$tags->set_attribute( 'style', Aspect\style_value( Aspect\ratio( $thumb ? ( wp_get_attachment_metadata( $thumb ) ?: null ) : null ) ) );
+			$ratio = Aspect\ratio( $thumb ? ( wp_get_attachment_metadata( $thumb ) ?: null ) : null );
+			$tags->set_attribute( 'style', Aspect\style_value( $ratio ) );
 			if ( 'gallery' === get_post_format( $post_id ) ) {
 				$tags->add_class( 'is-gallery' );
 			}

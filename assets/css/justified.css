@@ -43,6 +43,11 @@
 	object-fit: cover;
 }
 
+/* Never show an empty tile (post without a usable image); display:none also drops its title link from the tab order. */
+.wp-block-post-template.is-style-justified > li:not(:has(img)) {
+	display: none;
+}
+
 /* Gallery posts: small stacked-squares marker. */
 .wp-block-post-template.is-style-justified > li.is-gallery::before {
 	content: "";

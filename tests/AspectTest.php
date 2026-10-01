@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use function Peak\Aspect\{ ratio, style_value, orientation, post_id_from_class };
+use function Peak\Aspect\{ ratio, style_value, orientation, post_id_from_class, sizes_attr };
 
 final class AspectTest extends TestCase {
 	public function test_ratio_from_metadata(): void {
@@ -30,5 +30,15 @@ final class AspectTest extends TestCase {
 	public function test_post_id_from_class(): void {
 		$this->assertSame( 123, post_id_from_class( 'wp-block-post post-123 post type-post status-publish format-image' ) );
 		$this->assertSame( 0, post_id_from_class( 'wp-block-post type-post status-publish' ) );
+	}
+
+	public function test_sizes_attr_from_row_heights(): void {
+		$this->assertSame( '(max-width: 600px) 165px, 450px', sizes_attr( 1.5 ) );
+		$this->assertSame( '(max-width: 600px) 460px, 1255px', sizes_attr( 4.1811 ) );
+	}
+
+	public function test_sizes_attr_caps_at_1440(): void {
+		$this->assertSame( '(max-width: 600px) 440px, 1200px', sizes_attr( 4.0 ) );
+		$this->assertSame( '(max-width: 600px) 1100px, 1440px', sizes_attr( 10.0 ) );
 	}
 }
