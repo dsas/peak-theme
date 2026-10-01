@@ -37,6 +37,11 @@
 	margin: 0;
 }
 
+/* Editor: its block-level text wrapper would push the dot onto its own line. */
+.peak-favourite__list li > .rich-text {
+	display: inline;
+}
+
 .peak-favourite__list li:not(:last-child)::after {
 	content: "·";
 	content: "·" / "";
