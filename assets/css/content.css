@@ -280,3 +280,31 @@
 	font-weight: 600;
 	cursor: pointer;
 }
+
+/*
+ * Editor only: make the block styles look as they will on the site.
+ * The editor wraps a list item's text in a .rich-text element, and can't add the emoji span,
+ * so these rules target its markup (none of it exists on the front end).
+ */
+.wp-block-list.is-style-timeline > li > .rich-text > strong:first-child {
+	display: block;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	color: var(--wp--preset--color--muted);
+}
+
+/* Emoji list: a hanging indent puts each leading emoji in the margin column. */
+.wp-block-list.is-style-emoji > li:has(> .rich-text) {
+	text-indent: -1.85rem;
+}
+
+@media (min-width: 782px) {
+	.is-root-container > :is(.aside-boxout, .wp-block-group.is-style-boxout),
+	.wp-block-post-content.is-layout-constrained > :is(.aside-boxout, .wp-block-group.is-style-boxout).block-editor-block-list__block {
+		float: right;
+		clear: right;
+		width: 38%;
+		margin: 0.3rem 0 1rem 2rem !important;
+	}
+}
