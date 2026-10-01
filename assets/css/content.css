@@ -1,0 +1,73 @@
+/* Post and page content: floats and boxouts. */
+
+/* On wide screens, floated images and boxouts hang into the margin so text beside them has room. */
+@media (min-width: 1100px) {
+	:is(.peak-single, .peak-page) .wp-block-post-content > .alignright {
+		margin-right: -6rem;
+		max-width: 55%;
+	}
+
+	:is(.peak-single, .peak-page) .wp-block-post-content > .alignleft {
+		margin-left: -6rem;
+		max-width: 55%;
+	}
+}
+
+/* On phones there's no room beside a float: stack it instead. */
+@media (max-width: 599px) {
+	:is(.peak-single, .peak-page) .wp-block-post-content > :is(.alignleft, .alignright) {
+		float: none;
+		margin-inline: auto;
+		max-width: 100%;
+	}
+}
+
+/*
+ * Boxout: a Group with the "Boxout" style, or an <aside class="aside-boxout"> from the
+ * previous theme. Those older asides carry palette classes and inline styles from that
+ * theme (has-primary-background-color, tertiary border, small font size), so the
+ * overrides below win over them.
+ */
+:is(.aside-boxout, .wp-block-group.is-style-boxout) {
+	background: color-mix(in srgb, var(--wp--preset--color--primary) 9%, var(--wp--preset--color--base)) !important;
+	color: var(--wp--preset--color--contrast) !important;
+	border-left: 4px solid var(--wp--preset--color--accent);
+	border-left-color: var(--wp--preset--color--accent) !important;
+	border-radius: 0 4px 4px 0;
+	font-size: 0.9em !important;
+	line-height: 1.55;
+	padding: 1rem 1.25rem !important;
+}
+
+:is(.aside-boxout, .wp-block-group.is-style-boxout) > * {
+	max-width: none;
+}
+
+:is(.aside-boxout, .wp-block-group.is-style-boxout) > :first-child {
+	margin-top: 0;
+}
+
+:is(.aside-boxout, .wp-block-group.is-style-boxout) ul {
+	margin: 0.5rem 0 0;
+	padding-left: 1.1rem;
+}
+
+:is(.aside-boxout, .wp-block-group.is-style-boxout) li {
+	margin: 0.1rem 0;
+}
+
+@media (min-width: 782px) {
+	:is(.peak-single, .peak-page) .wp-block-post-content > :is(.aside-boxout, .wp-block-group.is-style-boxout) {
+		float: right;
+		clear: right;
+		width: 38%;
+		/* !important beats core's constrained-layout `margin-inline: auto !important` on non-aligned children. */
+		margin: 0.3rem 0 1rem 2rem !important;
+	}
+}
+
+@media (min-width: 1100px) {
+	:is(.peak-single, .peak-page) .wp-block-post-content > :is(.aside-boxout, .wp-block-group.is-style-boxout) {
+		margin-right: -6rem !important;
+	}
+}
