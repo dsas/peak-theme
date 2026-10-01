@@ -1,0 +1,189 @@
+/* Comments on writing and photo posts. */
+
+.peak-comments {
+	margin-top: var(--wp--preset--spacing--60);
+	padding-top: var(--wp--preset--spacing--40);
+	border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 30%, transparent);
+}
+
+.peak-comments .wp-block-comment-template {
+	margin: var(--wp--preset--spacing--40) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.peak-comments .wp-block-comment-template li {
+	margin: 0 0 var(--wp--preset--spacing--40);
+}
+
+/* Replies: indented under a moss rule. */
+.peak-comments .wp-block-comment-template ol {
+	margin: var(--wp--preset--spacing--40) 0 0 1.25rem;
+	padding: 0 0 0 1.25rem;
+	list-style: none;
+	border-left: 2px solid color-mix(in srgb, var(--wp--preset--color--primary) 35%, transparent);
+}
+
+.peak-comment {
+	gap: 0.9rem;
+}
+
+.peak-comment__avatar img {
+	display: block;
+	border-radius: 50%;
+}
+
+.peak-comment__body {
+	flex: 1;
+	min-width: 0;
+}
+
+.peak-comment__body > * {
+	margin-block: 0;
+}
+
+.peak-comment__meta {
+	gap: 0.15rem 0.6rem;
+	align-items: baseline;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.peak-comment__meta .wp-block-comment-author-name {
+	font-weight: 600;
+}
+
+.peak-comment__meta .wp-block-comment-author-name a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.peak-comment__meta .wp-block-comment-date,
+.peak-comment__meta .wp-block-comment-date a {
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+}
+
+.peak-comment .wp-block-comment-content {
+	margin-top: 0.3rem;
+	overflow-wrap: anywhere;
+}
+
+.peak-comment .wp-block-comment-content > * {
+	margin-block: 0 0.6rem;
+}
+
+.peak-comment .wp-block-comment-reply-link {
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+/* Replies by the post's author get a small label after the name. */
+.peak-comments .bypostauthor > .peak-comment .wp-block-comment-author-name::after {
+	content: "Author";
+	margin-left: 0.5rem;
+	padding: 0.05rem 0.4rem;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--wp--preset--color--primary) 14%, transparent);
+	color: var(--wp--preset--color--primary);
+	font-size: 0.85em;
+	font-weight: 500;
+}
+
+/* Pingbacks: just a link to the post that mentioned this one. */
+.peak-comments li.pingback .peak-comment__avatar,
+.peak-comments li.pingback .wp-block-comment-content,
+.peak-comments li.pingback .wp-block-comment-reply-link {
+	display: none;
+}
+
+.peak-comments li.pingback .peak-comment__meta::before {
+	content: "Mentioned in";
+	color: var(--wp--preset--color--muted);
+}
+
+.peak-comments li.pingback .wp-block-comment-author-name {
+	font-weight: 400;
+}
+
+.peak-comments li.pingback .wp-block-comment-author-name a {
+	color: var(--wp--preset--color--accent);
+	text-decoration: underline;
+}
+
+/* Comment form. */
+.peak-comments .comment-respond {
+	margin-top: var(--wp--preset--spacing--50);
+}
+
+.peak-comments .comment-reply-title {
+	font-size: var(--wp--preset--font-size--large);
+}
+
+.peak-comments .comment-form {
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.peak-comments .comment-form label {
+	display: block;
+	margin-bottom: 0.3rem;
+	font-weight: 600;
+}
+
+.peak-comments .comment-form :is(textarea, input[type="text"], input[type="email"], input[type="url"]) {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.6rem 0.75rem;
+	border: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 45%, transparent);
+	border-radius: 4px;
+	background: color-mix(in srgb, var(--wp--preset--color--contrast) 3%, var(--wp--preset--color--base));
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: 1rem;
+}
+
+.peak-comments .comment-form-cookies-consent {
+	display: flex;
+	gap: 0.5rem;
+	align-items: baseline;
+}
+
+.peak-comments .comment-form-cookies-consent label {
+	display: inline;
+	font-weight: 400;
+}
+
+/* Submit button: matches the search button. */
+.peak-comments .comment-form [type="submit"] {
+	padding: 0.55rem 1.1rem;
+	border: 0;
+	border-radius: 4px;
+	background: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--base);
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.peak-comments .comment-form [type="submit"]:hover {
+	background: color-mix(in srgb, var(--wp--preset--color--primary) 85%, var(--wp--preset--color--contrast));
+}
+
+/* Phones: deep threads indent less, so replies keep a readable width. */
+@media (max-width: 600px) {
+	.peak-comments .wp-block-comment-template ol {
+		margin-left: 0.25rem;
+		padding-left: 0.75rem;
+	}
+
+	.peak-comment {
+		gap: 0.6rem;
+	}
+
+	.peak-comment__avatar img {
+		width: 32px;
+		height: 32px;
+	}
+}

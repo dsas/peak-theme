@@ -21,3 +21,13 @@ function wrap_leading_emoji( string $html ): string {
 	);
 	return $result ?? $html;
 }
+
+/**
+ * Remove block delimiters (<!-- wp:paragraph --> and the like) from text that is shown
+ * as plain text, such as comments written with the block-based comment form on
+ * WordPress.com. The newline after each delimiter goes too, so wpautop doesn't turn it
+ * into a stray <br>, while blank lines between blocks still become paragraph breaks.
+ */
+function strip_block_delimiters( string $text ): string {
+	return preg_replace( '/<!-- \/?wp:[^>]*?-->(?:[ \t]*\r?\n)?/', '', $text ) ?? $text;
+}

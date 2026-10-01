@@ -61,3 +61,11 @@ add_filter(
 		return '<p class="peak-archive-label">' . esc_html( $label ) . '</p>' . $html;
 	}
 );
+
+// Comments written with WordPress.com's block-based comment form store block delimiters;
+// strip them before wpautop (priority 30) so they don't become stray line breaks.
+add_filter(
+	'comment_text',
+	fn( $text ) => is_string( $text ) ? strip_block_delimiters( $text ) : $text,
+	5
+);
