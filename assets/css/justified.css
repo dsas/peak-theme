@@ -99,10 +99,16 @@
 	padding-inline: 4px;
 }
 
-.peak-photos__title {
+.peak-photos__title,
+.peak-photos .peak-archive-label {
+	box-sizing: border-box;
 	max-width: 68rem;
 	margin-inline: auto;
 	padding-inline: var(--wp--preset--spacing--40);
+}
+
+.peak-photos .peak-archive-label + .peak-photos__title {
+	margin-top: 0.1rem;
 }
 
 .peak-photos .wp-block-query-pagination {

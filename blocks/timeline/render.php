@@ -64,12 +64,20 @@ $peak_thumbs  = ! empty( $attributes['showThumbnails'] );
 				<?php foreach ( $peak_group as $peak_item ) : ?>
 					<li class="peak-timeline__item<?php echo $peak_thumbs && $peak_item['thumbnail'] ? ' has-thumbnail' : ''; ?>">
 						<p class="peak-timeline__meta">
-							<time datetime="<?php echo esc_attr( $peak_item['date'] ); ?>"><?php echo esc_html( mysql2date( 'j M', $peak_item['date'] ) ); ?></time>
+							<?php if ( $peak_item['text'] ) : // Untitled: the date is the link to the post. ?>
+								<a class="peak-timeline__date-link" href="<?php echo esc_url( $peak_item['url'] ); ?>"><time datetime="<?php echo esc_attr( $peak_item['date'] ); ?>"><?php echo esc_html( mysql2date( 'j M', $peak_item['date'] ) ); ?></time></a>
+							<?php else : ?>
+								<time datetime="<?php echo esc_attr( $peak_item['date'] ); ?>"><?php echo esc_html( mysql2date( 'j M', $peak_item['date'] ) ); ?></time>
+							<?php endif; ?>
 							<?php if ( $peak_item['category'] && empty( $peak_ctx['category'] ) ) : // Not repeated on its own category page. ?>
 								· <a class="peak-timeline__cat" href="<?php echo esc_url( $peak_item['category_url'] ); ?>"><?php echo esc_html( $peak_item['category'] ); ?></a>
 							<?php endif; ?>
 						</p>
-						<a class="peak-timeline__title" href="<?php echo esc_url( $peak_item['url'] ); ?>"><?php echo esc_html( $peak_item['title'] ); ?></a>
+						<?php if ( $peak_item['text'] ) : ?>
+							<p class="peak-timeline__aside"><?php echo esc_html( $peak_item['text'] ); ?></p>
+						<?php else : ?>
+							<a class="peak-timeline__title" href="<?php echo esc_url( $peak_item['url'] ); ?>"><?php echo esc_html( $peak_item['title'] ); ?></a>
+						<?php endif; ?>
 						<?php if ( $peak_excerpt && $peak_item['excerpt'] ) : ?>
 							<p class="peak-timeline__excerpt"><?php echo esc_html( $peak_item['excerpt'] ); ?></p>
 						<?php endif; ?>

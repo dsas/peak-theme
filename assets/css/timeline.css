@@ -217,3 +217,12 @@
 .peak-year-nav__newer {
 	margin-left: auto;
 }
+
+/* Untitled posts (old asides): the whole text in place of a title, the date links to the post. */
+.peak-timeline__aside {
+	margin: 0.15rem 0 0;
+}
+
+.peak-timeline__date-link {
+	color: inherit;
+}

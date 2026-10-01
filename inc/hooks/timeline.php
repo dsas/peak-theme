@@ -44,6 +44,7 @@ function items( array $ctx ): array {
 	foreach ( $query->posts as $post ) {
 		$categories = get_the_category( $post->ID );
 		$excerpt    = has_excerpt( $post ) ? get_the_excerpt( $post ) : '';
+		$untitled   = '' === trim( get_the_title( $post ) );
 		$items[]    = [
 			'id'           => $post->ID,
 			'date'         => get_post_time( 'Y-m-d', false, $post ),
@@ -53,6 +54,8 @@ function items( array $ctx ): array {
 			'category_url' => $categories ? (string) get_category_link( $categories[0] ) : '',
 			'excerpt'      => $excerpt,
 			'thumbnail'    => (int) get_post_thumbnail_id( $post ),
+			// Untitled posts (old asides) are short: the timeline shows their whole text.
+			'text'         => $untitled ? trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( strip_shortcodes( $post->post_content ) ) ) ) : '',
 		];
 	}
 	return $cache[ $key ] = $items;
