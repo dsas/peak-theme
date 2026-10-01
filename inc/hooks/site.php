@@ -30,7 +30,7 @@ add_filter(
 
 function writing_url(): string {
 	$page = (int) get_option( 'page_for_posts' );
-	return $page ? (string) get_permalink( $page ) : home_url( '/' );
+	return $page ? (string) get_permalink( $page ) : (string) apply_filters( 'peak_writing_url', 'https://deansas.org/posts/' );
 }
 
 function photos_url(): string {
