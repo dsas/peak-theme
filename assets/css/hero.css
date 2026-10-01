@@ -112,3 +112,8 @@ body:has(.peak-home-valley) .peak-footer .peak-hills {
 	font-family: var(--wp--preset--font-family--ui);
 	font-size: var(--wp--preset--font-size--small);
 }
+
+/* Tall windows: the valley grows to meet the footer, instead of leaving a paper gap where the footer is pushed down. */
+.wp-site-blocks > .peak-home-valley {
+	flex-grow: 1;
+}
