@@ -1,0 +1,6 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"title": "Peak",
+	"settings": { "layout": { "contentSize": "42rem", "wideSize": "68rem" } }
+}
