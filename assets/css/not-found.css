@@ -1,0 +1,89 @@
+/* 404 page: message and search beside a moorland fingerpost, then recent writing. */
+
+.peak-404__top {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 15rem;
+	gap: var(--wp--preset--spacing--50);
+	align-items: center;
+}
+
+.peak-404__message > :first-child {
+	margin-top: 0;
+}
+
+/* The fingerpost: a dark post with three pointed sign arms. The arms are real links. */
+.peak-fingerpost {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	padding: 0.5rem 0 4.5rem;
+}
+
+.peak-fingerpost::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 50%;
+	width: 0.8rem;
+	transform: translateX(-50%);
+	border-radius: 3px 3px 0 0;
+	background: var(--wp--preset--color--muted);
+}
+
+.peak-fingerpost__arm {
+	position: relative;
+	width: 8.5rem;
+	padding: 0.45rem 1.4rem;
+	background: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--base);
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.peak-fingerpost__arm.is-right {
+	margin-left: calc(50% - 0.4rem);
+	clip-path: polygon(0 0, calc(100% - 0.9rem) 0, 100% 50%, calc(100% - 0.9rem) 100%, 0 100%);
+	transform: rotate(-2deg);
+}
+
+.peak-fingerpost__arm.is-left {
+	margin-left: calc(50% - 8.1rem);
+	text-align: right;
+	clip-path: polygon(0.9rem 0, 100% 0, 100% 100%, 0.9rem 100%, 0 50%);
+	transform: rotate(2deg);
+}
+
+.peak-fingerpost__arm:hover {
+	background: color-mix(in srgb, var(--wp--preset--color--primary) 85%, var(--wp--preset--color--contrast));
+	color: var(--wp--preset--color--base);
+}
+
+.peak-fingerpost__arm:focus-visible {
+	outline-offset: 3px;
+}
+
+.peak-404__recent {
+	margin-top: var(--wp--preset--spacing--60);
+}
+
+/* No writing on this site (e.g. the photos site): hide the empty section. */
+.peak-404__recent:not(:has(.peak-timeline)) {
+	display: none;
+}
+
+@media (max-width: 600px) {
+	.peak-404__top {
+		grid-template-columns: 1fr;
+	}
+
+	.peak-fingerpost {
+		width: 15rem;
+		margin-inline: auto;
+	}
+}
