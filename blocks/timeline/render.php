@@ -53,6 +53,9 @@ $peak_thumbs  = ! empty( $attributes['showThumbnails'] );
 			</li>
 		<?php endforeach; ?>
 	</ul>
+	<?php if ( ! empty( $attributes['showAllLink'] ) ) : ?>
+		<p class="peak-timeline__all"><a href="<?php echo esc_url( \Peak\Site\writing_url() ); ?>"><?php esc_html_e( 'All writing →', 'peak' ); ?></a></p>
+	<?php endif; ?>
 <?php else : ?>
 	<?php foreach ( group_by_year( $peak_items ) as $peak_year => $peak_group ) : ?>
 		<section class="peak-timeline__year" id="y<?php echo (int) $peak_year; ?>" aria-labelledby="y<?php echo (int) $peak_year; ?>-heading">

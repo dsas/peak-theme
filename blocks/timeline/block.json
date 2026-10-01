@@ -12,6 +12,7 @@
 		"limit": { "type": "number", "default": 0 },
 		"showExcerpt": { "type": "boolean", "default": true },
 		"showThumbnails": { "type": "boolean", "default": false },
+		"showAllLink": { "type": "boolean", "default": false },
 		"related": { "type": "boolean", "default": false }
 	},
 	"supports": { "html": false, "align": [ "wide" ] },

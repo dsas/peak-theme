@@ -101,3 +101,14 @@ body:has(.peak-home-valley) .peak-footer {
 body:has(.peak-home-valley) .peak-footer .peak-hills {
 	display: none;
 }
+
+/* Space between the intro and "Recent writing". */
+.peak-home-valley > .peak-section-label {
+	margin-top: var(--wp--preset--spacing--50);
+}
+
+.peak-timeline__all {
+	margin: var(--wp--preset--spacing--30) 0 0;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+}

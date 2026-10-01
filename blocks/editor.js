@@ -12,6 +12,7 @@
 		'peak/timeline': [
 			{ attribute: 'showThumbnails', label: __( 'Show thumbnails', 'peak' ), help: __( 'For posts with a featured image. Timeline layout only.', 'peak' ) },
 			{ attribute: 'showExcerpt', label: __( 'Show excerpts', 'peak' ), help: __( 'Only hand-written excerpts are shown. Timeline layout only.', 'peak' ) },
+			{ attribute: 'showAllLink', label: __( 'Show “All writing” link', 'peak' ), help: __( 'Links to the Writing page. Short list layout only.', 'peak' ) },
 		],
 	};
 
