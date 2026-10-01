@@ -118,8 +118,20 @@
 	font-family: var(--wp--preset--font-family--ui);
 }
 
+/*
+ * Galleries in photo posts break out to the wide width, so two or three photos share a row.
+ * !important beats core's constrained-layout margins and max-width.
+ */
+.peak-photo .wp-block-post-content > .wp-block-gallery.has-nested-images {
+	--peak-wide: min(var(--wp--style--global--wide-size), 100vw - var(--wp--style--root--padding-left) - var(--wp--style--root--padding-right));
+	box-sizing: border-box;
+	width: var(--peak-wide);
+	max-width: none !important;
+	margin-inline: calc((100% - var(--peak-wide)) / 2) !important;
+}
+
 .peak-photo .wp-block-gallery.has-nested-images {
-	--row-h: clamp(140px, 24vw, 320px);
+	--row-h: clamp(140px, 22vw, 300px);
 	display: flex !important;
 	flex-wrap: wrap;
 	gap: 4px !important;
@@ -146,9 +158,13 @@
 /* Tablets: taller rows (about two landscape photos per row) so titles have room. Keep in sync with Peak\Aspect\sizes_attr(). */
 @media (min-width: 601px) and (max-width: 1100px) {
 	.wp-block-post-template.is-style-justified,
-	.wp-block-gallery.is-style-justified,
-	.peak-photo .wp-block-gallery.has-nested-images {
+	.wp-block-gallery.is-style-justified {
 		--row-h: 34vw;
+	}
+
+	/* Photo-post galleries sit inside the page padding, so slightly shorter rows keep two per row. */
+	.peak-photo .wp-block-gallery.has-nested-images {
+		--row-h: 26vw;
 	}
 }
 
@@ -168,4 +184,14 @@
 
 .peak-photo .wp-block-gallery.has-nested-images > figure.wp-block-image:only-of-type {
 	flex-grow: 1 !important;
+}
+
+/*
+ * Jetpack tiled galleries are laid out by Jetpack's own styles. If those don't load (Jetpack
+ * offline or the block unregistered), at least keep the photos inside the column.
+ * Zero specificity, so Jetpack's rules always win.
+ */
+:where(.wp-block-jetpack-tiled-gallery) :where(img) {
+	max-width: 100%;
+	height: auto;
 }
