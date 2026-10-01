@@ -243,3 +243,40 @@
 	font-family: var(--wp--preset--font-family--mono);
 	font-size: 0.82em;
 }
+
+/* Password-protected posts: the form matches the search box and comment form. */
+.post-password-form {
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.post-password-form label {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.3rem 0.6rem;
+	align-items: center;
+	font-weight: 600;
+}
+
+.post-password-form input[type="password"] {
+	padding: 0.55rem 0.75rem;
+	border: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 45%, transparent);
+	border-radius: 4px;
+	background: color-mix(in srgb, var(--wp--preset--color--contrast) 3%, var(--wp--preset--color--base));
+	color: var(--wp--preset--color--contrast);
+	font: inherit;
+	font-weight: 400;
+}
+
+.post-password-form input[type="submit"] {
+	margin-left: 0.4rem;
+	padding: 0.55rem 1.1rem;
+	border: 0;
+	border-radius: 4px;
+	background: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--base);
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	cursor: pointer;
+}

@@ -69,3 +69,10 @@ add_filter(
 	fn( $text ) => is_string( $text ) ? strip_block_delimiters( $text ) : $text,
 	5
 );
+
+// Day archives: "2 January 2022", matching the date style used across the theme, rather than
+// the site's date format setting.
+add_filter(
+	'get_the_archive_title',
+	fn( $title ) => is_day() ? get_the_date( 'j F Y' ) : $title
+);

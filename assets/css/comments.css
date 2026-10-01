@@ -187,3 +187,8 @@
 		height: 32px;
 	}
 }
+
+/* No comments and none allowed: core still prints the wrapper, so hide it and its rule. */
+.peak-comments:not(:has(*)) {
+	display: none;
+}

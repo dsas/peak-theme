@@ -34,6 +34,16 @@ if ( ! empty( $attributes['related'] ) ) {
 
 $peak_items = items( $peak_ctx );
 if ( ! $peak_items ) {
+	// An archive with no writing (say, an empty category) says so rather than showing nothing.
+	if ( empty( $attributes['related'] ) && ! $peak_limit ) {
+		printf(
+			'<p %s>%s <a href="%s">%s</a></p>',
+			get_block_wrapper_attributes( [ 'class' => 'peak-timeline__empty' ] ), // phpcs:ignore WordPress.Security.EscapeOutput -- core-escaped.
+			esc_html__( 'No writing here yet.', 'peak' ),
+			esc_url( \Peak\Site\writing_url() ),
+			esc_html__( 'All writing →', 'peak' )
+		);
+	}
 	return;
 }
 $peak_variant = 'list' === ( $attributes['variant'] ?? '' ) ? 'list' : 'timeline';

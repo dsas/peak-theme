@@ -115,3 +115,59 @@ add_filter(
 	10,
 	2
 );
+
+/** Untitled and not password-protected (a protected post's words must not leak into titles or links). */
+function is_untitled( \WP_Post $post ): bool {
+	return '' === trim( $post->post_title ) && '' === $post->post_password;
+}
+
+/** Stand-in title for an untitled post (old asides): its first few words, as on the timeline. */
+function untitled_label( \WP_Post $post ): string {
+	return \Peak\Timeline\display_title( '', wp_strip_all_tags( strip_shortcodes( $post->post_content ) ) );
+}
+
+// Untitled posts: give the page a heading (for screen readers and the document outline) and a
+// browser-tab title, instead of nothing and the bare site name.
+add_filter(
+	'render_block_core/post-title',
+	function ( $html, $block, $instance ) {
+		if ( '' !== trim( $html ) || 1 !== (int) ( $block['attrs']['level'] ?? 2 ) || ! is_singular() ) {
+			return $html;
+		}
+		$post_id = (int) ( $instance->context['postId'] ?? 0 );
+		$post    = $post_id === get_queried_object_id() ? get_post( $post_id ) : null;
+		if ( ! $post || ! is_untitled( $post ) ) {
+			return $html;
+		}
+		return '<h1 class="wp-block-post-title screen-reader-text">' . esc_html( untitled_label( $post ) ) . '</h1>';
+	},
+	10,
+	3
+);
+
+add_filter(
+	'document_title_parts',
+	function ( $parts ) {
+		$post = is_singular() ? get_queried_object() : null;
+		if ( $post instanceof \WP_Post && is_untitled( $post ) ) {
+			$parts['title'] = untitled_label( $post );
+		}
+		return $parts;
+	}
+);
+
+// Older/newer links to an untitled post: its first few words instead of core's "Previous Post".
+foreach ( [ 'previous', 'next' ] as $peak_adjacent ) {
+	add_filter(
+		"{$peak_adjacent}_post_link",
+		function ( $output, $format, $link, $post, $adjacent ) {
+			if ( ! $post instanceof \WP_Post || ! is_untitled( $post ) ) {
+				return $output;
+			}
+			$fallback = 'previous' === $adjacent ? __( 'Previous Post' ) : __( 'Next Post' ); // phpcs:ignore WordPress.WP.I18n.MissingArgDomain -- core's own string.
+			return str_replace( '>' . $fallback . '<', '>' . esc_html( untitled_label( $post ) ) . '<', $output );
+		},
+		10,
+		5
+	);
+}

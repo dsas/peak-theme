@@ -226,3 +226,7 @@
 .peak-timeline__date-link {
 	color: inherit;
 }
+
+.peak-timeline__empty {
+	color: var(--wp--preset--color--muted);
+}
