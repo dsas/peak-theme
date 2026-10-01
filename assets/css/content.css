@@ -97,8 +97,8 @@
 	overflow-x: clip;
 }
 
-/* Room between a page title and content that starts with a paragraph. */
-.peak-page > .wp-block-post-title + .wp-block-post-content {
+/* Room between a page's title (or the Now page's "Updated" line) and its content. */
+.peak-page > :is(.wp-block-post-title, .peak-updated) + .wp-block-post-content {
 	margin-block-start: var(--wp--preset--spacing--40);
 }
 
