@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "peak/style-switcher",
+	"title": "Style switcher",
+	"category": "theme",
+	"description": "Lets visitors choose a colourway.",
+	"supports": { "html": false },
+	"editorScript": "peak-blocks-editor",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}
