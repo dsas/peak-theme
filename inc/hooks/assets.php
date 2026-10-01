@@ -32,7 +32,12 @@ add_action(
 add_action(
 	'wp_head',
 	function () {
-		foreach ( [ 'newsreader-latin-wght-normal.woff2', 'young-serif-latin-400-normal.woff2' ] as $file ) {
+		foreach ( [
+			'newsreader-latin-wght-normal.woff2',
+			'young-serif-latin-400-normal.woff2',
+			'inter-latin-wght-normal.woff2',
+			'jetbrains-mono-latin-400-normal.woff2',
+		] as $file ) {
 			printf(
 				'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
 				esc_url( get_theme_file_uri( 'assets/fonts/' . $file ) )
