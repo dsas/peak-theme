@@ -2,8 +2,6 @@
 
 A warm, textured block theme for deansas.org (writing) and photos.deansas.org (photos). Requires WordPress 6.7+ and PHP 8.1+.
 
-The design decisions behind it are recorded in Dean's notes ("deansas.org 2026"), under "Revisions after review".
-
 ## Writing and photos
 
 Posts with the **Image** or **Gallery** post format are photo posts. Everything else is writing. The theme routes them itself:
@@ -14,12 +12,6 @@ Posts with the **Image** or **Gallery** post format are photo posts. Everything 
 - The **Photos grid** template is chosen per page; it's the front page of photos.deansas.org.
 
 Both sites run the same theme, so they can merge later without a redesign.
-
-## Setting up a site
-
-- **deansas.org:** a static front page (the Home page, built from the "Home intro" pattern) and `/posts/` as the posts page. Pages named `now` get the "Updated" date automatically.
-- **photos.deansas.org:** a page using the Photos grid template as the static front page. Set Settings → Writing → Default Post Format to Image.
-- **Menus:** the header navigation has no fixed menu, so it shows the site's newest menu. Make sure that's the right one.
 
 ## Writing tips
 
@@ -58,5 +50,3 @@ The zip leaves out development files (tests, `bin/`, Composer files, this README
 ## Deploying
 
 Upload `dist/peak.zip` (Appearance → Themes → Add New → Upload), or connect this repository with WordPress.com GitHub Deployments, deploying to `wp-content/themes/peak`.
-
-Some content relies on Jetpack being connected. On a local site where Jetpack is missing or offline, tiled galleries lose their layout (the theme keeps their photos inside the column) and VideoPress videos don't appear.
