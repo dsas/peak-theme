@@ -19,7 +19,9 @@ final class ExifTest extends TestCase {
 
 	public function test_shutter_speeds(): void {
 		$this->assertSame( '1/250s', shutter( 0.004 ) );
-		$this->assertSame( '1/3s', shutter( 0.3333 ) );
+		$this->assertSame( '0.3s', shutter( 0.3333 ) );
+		$this->assertSame( '0.8s', shutter( 0.8 ) );
+		$this->assertSame( '1/4s', shutter( 0.25 ) );
 		$this->assertSame( '2s', shutter( 2.0 ) );
 		$this->assertSame( '1.5s', shutter( 1.5 ) );
 	}

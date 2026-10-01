@@ -32,6 +32,9 @@ function shutter( float $seconds ): string {
 	if ( $seconds >= 1 ) {
 		return trim_number( $seconds, 1 ) . 's';
 	}
+	if ( $seconds >= 0.3 ) {
+		return trim_number( $seconds, 1 ) . 's';
+	}
 	return '1/' . (int) round( 1 / $seconds ) . 's';
 }
 
