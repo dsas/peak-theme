@@ -1,0 +1,60 @@
+.peak-results {
+	list-style: none;
+	padding: 0;
+}
+
+.peak-results > li {
+	margin-block: var(--wp--preset--spacing--40);
+}
+
+.peak-result {
+	gap: var(--wp--preset--spacing--30);
+}
+
+/* Thumbnails only for photo results. */
+.peak-results > li:not(.format-image):not(.format-gallery) .peak-result__thumb {
+	display: none;
+}
+
+.peak-result__thumb {
+	flex: none;
+	margin: 0;
+}
+
+.peak-result__meta {
+	gap: 0.6rem;
+}
+
+.peak-result .wp-block-post-title {
+	margin: 0.15rem 0;
+}
+
+.peak-facts th {
+	width: 9rem;
+	text-align: left;
+	vertical-align: top;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	color: var(--wp--preset--color--muted);
+}
+
+.peak-facts :where(th, td) {
+	border: 0;
+	border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 25%, transparent);
+	padding: 0.5rem 0;
+}
+
+.peak-favourite h3 {
+	margin: 0.15rem 0;
+}
+
+.peak-about-photo img {
+	border-radius: 50%;
+}
+
+.peak-now-updated {
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
