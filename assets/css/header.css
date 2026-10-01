@@ -6,6 +6,16 @@
 	padding-block: var(--wp--preset--spacing--40);
 }
 
+/*
+ * Page content sits above the header, so the grid's fade shows on the paper but never draws
+ * over photos near the top of a page. (The homepage hero is outside <main>, so the grid
+ * still fades over its sky.)
+ */
+:is(.peak-main, .peak-photo) {
+	position: relative;
+	z-index: 2;
+}
+
 /* Engineer's notebook grid, fading out. Visible only when the colourway sets grid opacity. */
 .peak-header::before {
 	content: "";

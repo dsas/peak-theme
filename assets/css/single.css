@@ -83,9 +83,6 @@
  */
 .peak-single__header:has(> .peak-single__image:not(.is-portrait)) {
 	display: grid;
-	/* Above the site header, whose notebook-grid fade would otherwise draw over the photo. */
-	position: relative;
-	z-index: 2;
 }
 
 .peak-single__header:has(> .peak-single__image:not(.is-portrait)) > * {
