@@ -4,3 +4,4 @@ dist/
 .superpowers/
 .phpunit.result.cache
 .phpunit.cache/
+exports/
