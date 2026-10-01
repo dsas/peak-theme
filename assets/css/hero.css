@@ -10,6 +10,8 @@
 .peak-hero__scene {
 	position: absolute;
 	inset: 0;
+	max-width: none !important;
+	margin: 0 !important;
 	z-index: 0;
 }
 
@@ -80,10 +82,10 @@ svg.peak-hero__layer {
 }
 
 /* The valley flows straight into the footer valley on the homepage. */
-.home .peak-footer {
+body:has(.peak-home-valley) .peak-footer {
 	margin-block-start: 0;
 }
 
-.home .peak-footer .peak-hills {
+body:has(.peak-home-valley) .peak-footer .peak-hills {
 	display: none;
 }
