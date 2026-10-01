@@ -1,5 +1,7 @@
 .peak-header {
 	position: relative;
+	/* Above the homepage hero (positioned, opaque sky) so the grid's fade isn't cut off at the header's edge. */
+	z-index: 1;
 	isolation: isolate;
 	padding-block: var(--wp--preset--spacing--40);
 }

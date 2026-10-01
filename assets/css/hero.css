@@ -17,7 +17,8 @@
 
 .peak-hero__title {
 	position: relative;
-	z-index: 1;
+	/* Above the header's grid, which now overlaps the top of the hero. */
+	z-index: 2;
 	margin: 0;
 	font-size: var(--wp--preset--font-size--xx-large);
 }
