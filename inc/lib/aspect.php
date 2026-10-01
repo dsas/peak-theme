@@ -31,12 +31,12 @@ function post_id_from_class( string $class ): int {
 }
 
 /**
- * `sizes` for a justified tile: its width is ratio × row height (110px on mobile, up to 300px on desktop), capped at 1440px.
+ * `sizes` for a justified tile: full width on phones (one photo per row), otherwise
+ * ratio × the 300px max row height, capped at 1440px.
  */
 function sizes_attr( float $ratio ): string {
-	$mobile  = min( 1440, (int) ceil( $ratio * 110 ) );
 	$desktop = min( 1440, (int) ceil( $ratio * 300 ) );
-	return "(max-width: 600px) {$mobile}px, {$desktop}px";
+	return "(max-width: 600px) 100vw, {$desktop}px";
 }
 
 /** `sizes` for a portrait hero: full width on portrait screens, otherwise screen-height-limited (92vh × ratio). */

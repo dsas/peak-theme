@@ -67,12 +67,33 @@
 	--ar: 1 !important;
 }
 
-@media (max-width: 600px) {
-	.wp-block-post-template.is-style-justified,
-	.wp-block-gallery.is-style-justified {
-		--row-h: 110px;
-	}
+/* Title and date over the bottom of each tile, matching the photo post band. Clicks pass through to the image link. */
+.wp-block-post-template.is-style-justified .peak-tile__band {
+	position: absolute;
+	inset: auto 0 0 0;
+	margin: 0;
+	padding: 0.4rem 0.75rem 0.55rem;
+	background: rgb(40 36 30 / 0.42);
+	color: #fff;
+	text-align: center;
+	pointer-events: none;
 }
+
+.wp-block-post-template.is-style-justified .peak-tile__band > * {
+	margin: 0;
+}
+
+.wp-block-post-template.is-style-justified .peak-tile__band .wp-block-post-date {
+	color: rgb(255 255 255 / 0.85);
+	font-size: 0.75rem;
+}
+
+.wp-block-post-template.is-style-justified .peak-tile__band .wp-block-post-title {
+	color: #fff;
+	font-size: clamp(1rem, 1.4vw, 1.3rem);
+	line-height: 1.2;
+}
+
 
 .peak-photos {
 	padding-inline: 4px;
@@ -114,4 +135,13 @@
 	height: auto !important;
 	aspect-ratio: var(--ar, 1.5);
 	object-fit: cover;
+}
+
+/* Phones (last, so it wins over the rules above): one photo per row, full width, uncropped. */
+@media (max-width: 600px) {
+	.wp-block-post-template.is-style-justified > li,
+	.wp-block-gallery.is-style-justified > figure.wp-block-image,
+	.peak-photo .wp-block-gallery.has-nested-images > figure.wp-block-image {
+		flex: 1 1 100% !important;
+	}
 }
