@@ -95,15 +95,3 @@
 		flex-direction: column-reverse;
 	}
 }
-
-.peak-exif {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 0 1rem;
-	list-style: none;
-	padding: 0;
-	font-family: var(--wp--preset--font-family--ui);
-	font-size: var(--wp--preset--font-size--small);
-	color: var(--wp--preset--color--muted);
-}

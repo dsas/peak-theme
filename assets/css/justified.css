@@ -154,3 +154,12 @@
 		flex: 1 1 100% !important;
 	}
 }
+
+/* A gallery left with one photo (the other became the hero) fills the column instead of sitting small at the left. */
+.peak-photo .wp-block-gallery.has-nested-images:has(> figure.wp-block-image:only-of-type)::after {
+	display: none;
+}
+
+.peak-photo .wp-block-gallery.has-nested-images > figure.wp-block-image:only-of-type {
+	flex-grow: 1 !important;
+}
