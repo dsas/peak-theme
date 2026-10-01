@@ -12,7 +12,8 @@
 	inset: 0;
 	max-width: none !important;
 	margin: 0 !important;
-	z-index: 0;
+	/* Sun and hills above the header's notebook grid (the grid still shows on the sky behind them). */
+	z-index: 2;
 }
 
 .peak-hero__title {
@@ -127,4 +128,9 @@ body:has(.peak-home-valley) .peak-footer .peak-hills {
 
 .peak-home > .peak-home-valley {
 	flex-grow: 1;
+}
+
+/* Homepage: the header takes the sky's top colour, so the sky runs unbroken from the top of the window to the hills. */
+body:has(.peak-home) .peak-header {
+	background: var(--wp--custom--sky--top);
 }
