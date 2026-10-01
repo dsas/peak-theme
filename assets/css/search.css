@@ -55,9 +55,3 @@
 	object-fit: cover;
 	border-radius: 50%;
 }
-
-.peak-now-updated {
-	font-family: var(--wp--preset--font-family--ui);
-	font-size: var(--wp--preset--font-size--small);
-	color: var(--wp--preset--color--muted);
-}
