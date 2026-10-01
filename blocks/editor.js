@@ -16,6 +16,12 @@
 		],
 	};
 
+	// Template-only blocks (set by PHP on the post editor screen) are kept out of the inserter.
+	const templateOnly = window.peakTemplateOnlyBlocks || [];
+	wp.hooks.addFilter( 'blocks.registerBlockType', 'peak/template-only', ( settings, name ) =>
+		templateOnly.includes( name ) ? { ...settings, supports: { ...settings.supports, inserter: false } } : settings
+	);
+
 	( names || [] ).forEach( ( name ) => {
 		registerBlockType( name, {
 			edit: ( props ) => {
