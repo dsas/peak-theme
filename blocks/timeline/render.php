@@ -12,13 +12,24 @@ $peak_ctx   = current_context();
 if ( $peak_limit ) {
 	$peak_ctx['limit'] = $peak_limit;
 }
+$peak_heading = '';
 if ( ! empty( $attributes['related'] ) ) {
-	$peak_post_id = (int) ( $block->context['postId'] ?? get_the_ID() );
-	$peak_ctx     = [
+	$peak_post_id    = (int) ( $block->context['postId'] ?? get_the_ID() );
+	$peak_categories = get_the_category( $peak_post_id );
+	$peak_category   = $peak_categories ? $peak_categories[0] : null;
+	$peak_ctx        = [
 		'limit'              => $peak_limit ?: 3,
 		'related_to'         => $peak_post_id,
-		'related_categories' => wp_get_post_categories( $peak_post_id ),
+		'related_categories' => $peak_category ? [ $peak_category->term_id ] : [],
 	];
+	// The heading names the category the list is drawn from.
+	$peak_heading = $peak_category
+		? sprintf(
+			/* translators: %s: linked category name. */
+			esc_html__( 'More from %s', 'peak' ),
+			'<a href="' . esc_url( get_category_link( $peak_category ) ) . '">' . esc_html( $peak_category->name ) . '</a>'
+		)
+		: esc_html__( 'More writing', 'peak' );
 }
 
 $peak_items = items( $peak_ctx );
@@ -29,6 +40,9 @@ $peak_variant = 'list' === ( $attributes['variant'] ?? '' ) ? 'list' : 'timeline
 $peak_excerpt = ! empty( $attributes['showExcerpt'] );
 ?>
 <div <?php echo get_block_wrapper_attributes( [ 'class' => 'peak-timeline is-variant-' . $peak_variant ] ); ?>>
+<?php if ( $peak_heading ) : ?>
+	<h2 class="peak-section-label"><?php echo $peak_heading; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above. ?></h2>
+<?php endif; ?>
 <?php if ( 'list' === $peak_variant ) : ?>
 	<ul class="peak-timeline__list">
 		<?php foreach ( $peak_items as $peak_item ) : ?>
