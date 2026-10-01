@@ -1,0 +1,87 @@
+/*
+ * Justified rows: items grow in proportion to their aspect ratio from a basis of
+ * ratio × row height, so every item in a row ends up the same height.
+ * The ::after filler absorbs the last row's spare space so it doesn't stretch.
+ */
+.wp-block-post-template.is-style-justified,
+.wp-block-gallery.is-style-justified {
+	--row-h: clamp(120px, 22vw, 300px);
+	display: flex !important;
+	flex-wrap: wrap;
+	gap: 4px !important;
+	list-style: none;
+	padding: 0;
+}
+
+.wp-block-post-template.is-style-justified::after,
+.wp-block-gallery.is-style-justified::after {
+	content: "";
+	flex-grow: 999999;
+}
+
+.wp-block-post-template.is-style-justified > li,
+.wp-block-gallery.is-style-justified > figure.wp-block-image {
+	flex: var(--ar, 1.5) 1 calc(var(--ar, 1.5) * var(--row-h)) !important;
+	width: auto !important;
+	margin: 0 !important;
+	position: relative;
+}
+
+.wp-block-post-template.is-style-justified .wp-block-post-featured-image,
+.wp-block-post-template.is-style-justified .wp-block-post-featured-image a {
+	display: block;
+	margin: 0;
+	height: 100%;
+}
+
+.wp-block-post-template.is-style-justified img,
+.wp-block-gallery.is-style-justified > figure.wp-block-image img {
+	display: block;
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: var(--ar, 1.5);
+	object-fit: cover;
+}
+
+/* Gallery posts: small stacked-squares marker. */
+.wp-block-post-template.is-style-justified > li.is-gallery::before {
+	content: "";
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	z-index: 1;
+	width: 20px;
+	height: 20px;
+	pointer-events: none;
+	filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.5));
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='white' stroke-width='1.6'%3E%3Crect x='6' y='2' width='12' height='12' rx='1.5'/%3E%3Cpath d='M3 6v10.5c0 .8.7 1.5 1.5 1.5H15'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+/* Fallback switch: add `is-square` to the Photos page group for uniform squares. */
+.is-square .is-style-justified > li {
+	--ar: 1 !important;
+}
+
+@media (max-width: 600px) {
+	.wp-block-post-template.is-style-justified,
+	.wp-block-gallery.is-style-justified {
+		--row-h: 110px;
+	}
+}
+
+.peak-photos {
+	padding-inline: 4px;
+}
+
+.peak-photos__title {
+	max-width: 68rem;
+	margin-inline: auto;
+	padding-inline: var(--wp--preset--spacing--40);
+}
+
+.peak-photos .wp-block-query-pagination {
+	max-width: 68rem;
+	margin: var(--wp--preset--spacing--50) auto 0;
+	padding-inline: var(--wp--preset--spacing--40);
+	font-family: var(--wp--preset--font-family--ui);
+}
