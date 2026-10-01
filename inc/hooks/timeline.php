@@ -39,6 +39,7 @@ function items( array $ctx ): array {
 	}
 
 	$query = new \WP_Query( query_args( $ctx ) );
+	update_post_thumbnail_cache( $query );
 	$items = [];
 	foreach ( $query->posts as $post ) {
 		$categories = get_the_category( $post->ID );
@@ -51,6 +52,7 @@ function items( array $ctx ): array {
 			'category'     => $categories ? $categories[0]->name : '',
 			'category_url' => $categories ? (string) get_category_link( $categories[0] ) : '',
 			'excerpt'      => $excerpt,
+			'thumbnail'    => (int) get_post_thumbnail_id( $post ),
 		];
 	}
 	return $cache[ $key ] = $items;

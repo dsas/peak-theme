@@ -58,7 +58,7 @@ $peak_excerpt = ! empty( $attributes['showExcerpt'] );
 			<h2 class="peak-timeline__year-heading" id="y<?php echo (int) $peak_year; ?>-heading"><?php echo (int) $peak_year; ?></h2>
 			<ol class="peak-timeline__items">
 				<?php foreach ( $peak_group as $peak_item ) : ?>
-					<li class="peak-timeline__item">
+					<li class="peak-timeline__item<?php echo $peak_item['thumbnail'] ? ' has-thumbnail' : ''; ?>">
 						<p class="peak-timeline__meta">
 							<time datetime="<?php echo esc_attr( $peak_item['date'] ); ?>"><?php echo esc_html( mysql2date( 'j M', $peak_item['date'] ) ); ?></time>
 							<?php if ( $peak_item['category'] ) : ?>
@@ -68,6 +68,10 @@ $peak_excerpt = ! empty( $attributes['showExcerpt'] );
 						<a class="peak-timeline__title" href="<?php echo esc_url( $peak_item['url'] ); ?>"><?php echo esc_html( $peak_item['title'] ); ?></a>
 						<?php if ( $peak_excerpt && $peak_item['excerpt'] ) : ?>
 							<p class="peak-timeline__excerpt"><?php echo esc_html( $peak_item['excerpt'] ); ?></p>
+						<?php endif; ?>
+						<?php if ( $peak_item['thumbnail'] ) : ?>
+							<?php // Repeats the title link, so it's kept out of the tab order and accessibility tree. ?>
+							<a class="peak-timeline__thumb" href="<?php echo esc_url( $peak_item['url'] ); ?>" tabindex="-1" aria-hidden="true"><?php echo wp_get_attachment_image( $peak_item['thumbnail'], 'thumbnail', false, [ 'alt' => '', 'loading' => 'lazy' ] ); ?></a>
 						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>

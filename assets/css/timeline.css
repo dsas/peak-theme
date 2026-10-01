@@ -147,3 +147,50 @@
 		margin-bottom: 0.5rem;
 	}
 }
+
+/* Wide screens: the timeline takes the full reading column and the year rail hangs in the margin beside it. */
+@media (min-width: 1100px) {
+	.peak-writing__body {
+		display: block;
+		position: relative;
+	}
+
+	.peak-writing__body > .peak-year-rail {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: calc(100% + var(--wp--preset--spacing--50));
+		width: 6rem;
+	}
+
+	.peak-writing__body > .peak-year-rail ol {
+		position: sticky;
+		top: var(--wp--preset--spacing--40);
+	}
+}
+
+/* Thumbnails for posts with a featured image, on the right so the line and dots stay clean. */
+.peak-timeline__item.has-thumbnail {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 3.5rem;
+	column-gap: var(--wp--preset--spacing--30);
+	align-items: start;
+}
+
+.peak-timeline__item.has-thumbnail > :not(.peak-timeline__thumb) {
+	grid-column: 1;
+}
+
+.peak-timeline__thumb {
+	grid-column: 2;
+	grid-row: 1 / span 3;
+	align-self: center;
+	line-height: 0;
+}
+
+.peak-timeline__thumb img {
+	width: 3.5rem;
+	height: 3.5rem;
+	object-fit: cover;
+	border-radius: 3px;
+}
