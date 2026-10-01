@@ -31,9 +31,20 @@ a {
 	text-underline-offset: 0.15em;
 }
 
-:where(a, button, input, select, summary):focus-visible {
+:where(a, button, input, select, summary, textarea):focus-visible {
 	outline: 2px solid var(--wp--preset--color--accent);
 	outline-offset: 2px;
+}
+
+/* On the dark green valley (homepage, footer) heather all but disappears: use the valley's link colour. */
+.peak-valley :focus-visible {
+	outline-color: var(--wp--custom--valley--accent);
+}
+
+/* Over photos: a white ring with a dark halo shows on light and dark images alike. */
+:is(.wp-block-post-template.is-style-justified, .peak-single__header, .peak-photo__hero) :focus-visible {
+	outline-color: #fff;
+	box-shadow: 0 0 0 4px rgb(0 0 0 / 0.55);
 }
 
 mark.peak-mark {

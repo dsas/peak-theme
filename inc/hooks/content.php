@@ -76,3 +76,14 @@ add_filter(
 	'get_the_archive_title',
 	fn( $title ) => is_day() ? get_the_date( 'j F Y' ) : $title
 );
+
+// "Leave a Reply" as an h2, a sibling of the comment count heading. Core's h3 skips a level
+// on posts with no comments yet, where it follows the post's h1.
+add_filter(
+	'comment_form_defaults',
+	function ( $defaults ) {
+		$defaults['title_reply_before'] = '<h2 id="reply-title" class="comment-reply-title">';
+		$defaults['title_reply_after']  = '</h2>';
+		return $defaults;
+	}
+);

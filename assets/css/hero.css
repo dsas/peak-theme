@@ -113,7 +113,18 @@ body:has(.peak-home-valley) .peak-footer .peak-hills {
 	font-size: var(--wp--preset--font-size--small);
 }
 
-/* Tall windows: the valley grows to meet the footer, instead of leaving a paper gap where the footer is pushed down. */
-.wp-site-blocks > .peak-home-valley {
+/*
+ * The hero and valley share <main> (so the "Hello" heading is inside the main landmark).
+ * Tall windows: main, and the valley within it, grow to meet the footer, instead of leaving
+ * a paper gap where the footer is pushed down.
+ */
+.wp-site-blocks > .peak-home {
+	margin-block-start: 0;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.peak-home > .peak-home-valley {
 	flex-grow: 1;
 }
