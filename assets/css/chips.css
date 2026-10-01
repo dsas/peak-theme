@@ -1,0 +1,25 @@
+.wp-block-categories.is-style-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	list-style: none;
+	padding: 0;
+	margin-block: var(--wp--preset--spacing--30) var(--wp--preset--spacing--50);
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.wp-block-categories.is-style-chips li a {
+	display: inline-block;
+	padding: 0.15rem 0.75rem;
+	border: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 50%, transparent);
+	border-radius: 999px;
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.wp-block-categories.is-style-chips li.current-cat a {
+	background: var(--wp--preset--color--primary);
+	border-color: transparent;
+	color: var(--wp--preset--color--base);
+}

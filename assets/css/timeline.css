@@ -1,0 +1,149 @@
+.peak-writing__body {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 6rem;
+	gap: var(--wp--preset--spacing--50);
+	align-items: start;
+}
+
+.peak-writing__body > .peak-timeline { grid-column: 1; grid-row: 1; }
+
+.peak-year-rail {
+	grid-column: 2;
+	grid-row: 1;
+	position: sticky;
+	top: var(--wp--preset--spacing--40);
+}
+
+.peak-year-rail ol {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 0.75rem;
+	border-left: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 40%, transparent);
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.peak-year-rail a {
+	display: block;
+	padding: 0.1rem 0;
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+}
+
+.peak-year-rail a:hover,
+.peak-year-rail a[aria-current] {
+	color: var(--wp--preset--color--primary);
+	font-weight: 600;
+}
+
+.peak-timeline__year {
+	position: relative;
+	padding-left: 4.5rem;
+	scroll-margin-top: var(--wp--preset--spacing--40);
+}
+
+.peak-timeline__year-heading {
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 0;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+}
+
+.peak-timeline__items {
+	list-style: none;
+	margin: 0 0 var(--wp--preset--spacing--50);
+	padding: 0 0 0 1.25rem;
+	border-left: 2px solid color-mix(in srgb, var(--wp--preset--color--primary) 35%, transparent);
+}
+
+.peak-timeline__item {
+	position: relative;
+	margin: 0 0 var(--wp--preset--spacing--30);
+}
+
+.peak-timeline__item::before {
+	content: "";
+	position: absolute;
+	left: calc(-1.25rem - 5px);
+	top: 0.45em;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--wp--preset--color--primary);
+}
+
+.peak-timeline__meta {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.peak-timeline__cat {
+	font-size: 0.7rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.peak-timeline__title {
+	font-size: 1.15em;
+}
+
+.peak-timeline__excerpt {
+	margin: 0.2rem 0 0;
+	font-size: 0.95em;
+	color: var(--wp--preset--color--muted);
+}
+
+.peak-timeline__list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.peak-timeline__list li {
+	display: flex;
+	gap: 1rem;
+	align-items: baseline;
+	margin: 0.35rem 0;
+}
+
+.peak-timeline__list time {
+	flex: none;
+	min-width: 6.5rem;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+@media (max-width: 781px) {
+	.peak-writing__body {
+		display: block;
+	}
+
+	.peak-year-rail {
+		position: static;
+		margin-bottom: var(--wp--preset--spacing--40);
+	}
+
+	.peak-year-rail ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.9rem;
+		border: 0;
+		padding: 0;
+	}
+
+	.peak-timeline__year {
+		padding-left: 0;
+	}
+
+	.peak-timeline__year-heading {
+		position: static;
+		margin-bottom: 0.5rem;
+	}
+}

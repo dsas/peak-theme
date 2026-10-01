@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "peak/year-rail",
+	"title": "Year rail",
+	"category": "theme",
+	"description": "Links to each year in the writing timeline.",
+	"supports": { "html": false },
+	"editorScript": "peak-blocks-editor",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}
