@@ -50,8 +50,17 @@
 }
 
 /* Featured image: room before the text; portrait images are capped at screen height, centred, uncropped. */
-.peak-single .peak-single__image {
+.peak-single__header:has(> .peak-single__image) {
 	margin-bottom: var(--wp--preset--spacing--50);
+}
+
+.peak-single .peak-single__image {
+	margin-bottom: 0;
+}
+
+/* Without a featured image, the same room under the title as on pages. */
+.peak-single__header + .wp-block-post-content {
+	margin-block-start: var(--wp--preset--spacing--40);
 }
 
 .peak-single .peak-single__image.is-portrait {
@@ -64,4 +73,67 @@
 	max-height: min(55vh, 520px);
 	height: auto !important;
 	margin-inline: auto;
+}
+
+/*
+ * Landscape and square featured images: the date, category and title sit over the bottom
+ * of the image on a dark gradient. Portrait images and posts without one keep the title above.
+ * The heading and image share one grid cell; the heading comes first in the markup, so it
+ * is read first, and is lifted above the image.
+ */
+.peak-single__header:has(> .peak-single__image:not(.is-portrait)) {
+	display: grid;
+	/* Above the site header, whose notebook-grid fade would otherwise draw over the photo. */
+	position: relative;
+	z-index: 2;
+}
+
+.peak-single__header:has(> .peak-single__image:not(.is-portrait)) > * {
+	grid-area: 1 / 1;
+}
+
+.peak-single__header > .peak-single__image:not(.is-portrait) {
+	position: relative;
+	/* Grid items with core's auto margins shrink to fit; fill the cell instead. */
+	width: 100%;
+	margin-inline: 0 !important;
+}
+
+.peak-single__header > .peak-single__image:not(.is-portrait) img {
+	display: block;
+	width: 100% !important;
+	height: auto !important;
+	min-height: 18rem;
+	max-height: 70vh;
+	object-fit: cover;
+}
+
+.peak-single__header > .peak-single__image:not(.is-portrait)::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgb(20 24 18 / 0.78), rgb(20 24 18 / 0.35) 45%, rgb(20 24 18 / 0) 75%);
+	pointer-events: none;
+}
+
+/* Text lines up with the reading column where the image is wider than it. */
+.peak-single__header:has(> .peak-single__image:not(.is-portrait)) > .peak-single__heading {
+	position: relative;
+	z-index: 1;
+	align-self: end;
+	box-sizing: border-box;
+	max-width: none !important;
+	margin: 0 !important;
+	padding: 0 max(var(--wp--preset--spacing--40), (100% - var(--wp--style--global--content-size)) / 2) var(--wp--preset--spacing--50);
+	color: #fff;
+}
+
+.peak-single__header:has(> .peak-single__image:not(.is-portrait)) .wp-block-post-title {
+	color: #fff;
+	text-shadow: 0 1px 12px rgb(0 0 0 / 0.35);
+}
+
+.peak-single__header:has(> .peak-single__image:not(.is-portrait)) .peak-single__meta,
+.peak-single__header:has(> .peak-single__image:not(.is-portrait)) .peak-single__meta :is(a, .wp-block-post-date) {
+	color: rgb(255 255 255 / 0.88);
 }
