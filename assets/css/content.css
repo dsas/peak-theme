@@ -71,3 +71,8 @@
 		margin-right: -6rem !important;
 	}
 }
+
+/* Room above section headings in posts and pages. */
+:is(.peak-single, .peak-page) .wp-block-post-content > h2 {
+	margin-block-start: var(--wp--preset--spacing--50);
+}

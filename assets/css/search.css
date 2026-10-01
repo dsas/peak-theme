@@ -28,30 +28,3 @@
 .peak-result .wp-block-post-title {
 	margin: 0.15rem 0;
 }
-
-.wp-block-table.peak-facts th {
-	width: 9rem;
-	text-align: left;
-	vertical-align: top;
-	font-family: var(--wp--preset--font-family--ui);
-	font-size: var(--wp--preset--font-size--small);
-	font-weight: 600;
-	color: var(--wp--preset--color--muted);
-}
-
-.wp-block-table.peak-facts :is(th, td) {
-	border: 0;
-	border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 25%, transparent);
-	padding: 0.5rem 0;
-}
-
-.peak-favourite h3 {
-	margin: 0.15rem 0;
-}
-
-.peak-about-photo img {
-	width: 10rem;
-	height: 10rem;
-	object-fit: cover;
-	border-radius: 50%;
-}
