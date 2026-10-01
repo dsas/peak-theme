@@ -115,3 +115,38 @@
 	font-weight: 600;
 	color: var(--wp--preset--color--muted);
 }
+
+/* Emoji list style: no bullets; each item's leading emoji hangs in the margin as a column. */
+.wp-block-list.is-style-emoji {
+	list-style: none;
+	padding-left: 0;
+}
+
+.wp-block-list.is-style-emoji > li {
+	position: relative;
+	margin: 0 0 0.45rem;
+	padding-left: 2rem;
+}
+
+.wp-block-list.is-style-emoji .peak-emoji {
+	position: absolute;
+	left: 0;
+	width: 1.5rem;
+	text-align: center;
+	white-space: nowrap;
+	/* Colour emoji fonts first, so characters like ✍ combine with skin-tone modifiers. */
+	font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+/* "Updated …" line on the Now page. */
+.peak-updated {
+	gap: 0.3em;
+	margin-top: 0;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.peak-updated > * {
+	margin: 0;
+}

@@ -12,5 +12,36 @@ add_action(
 	function () {
 		register_block_style( 'core/group', [ 'name' => 'boxout', 'label' => __( 'Boxout', 'peak' ) ] );
 		register_block_style( 'core/list', [ 'name' => 'timeline', 'label' => __( 'Timeline', 'peak' ) ] );
+		register_block_style( 'core/list', [ 'name' => 'emoji', 'label' => __( 'Emoji list', 'peak' ) ] );
 	}
+);
+
+// The Now page's "Updated" date: core hides a modified date that isn't later than the
+// publish date, so fall back to the publish date rather than showing "Updated" alone.
+add_filter(
+	'render_block_core/post-date',
+	function ( $html, $block, $instance ) {
+		$attrs = $block['attrs'] ?? [];
+		if ( '' !== trim( $html ) || 'modified' !== ( $attrs['displayType'] ?? '' ) || ! str_contains( $attrs['className'] ?? '', 'peak-updated__date' ) ) {
+			return $html;
+		}
+		$block['attrs']['displayType'] = 'date';
+		// Keep the post context (postId) the original block had.
+		return ( new \WP_Block( $block, $instance->context ?? [] ) )->render();
+	},
+	10,
+	3
+);
+
+// Emoji lists: mark each item's leading emoji so CSS can hang it in the margin.
+add_filter(
+	'render_block_core/list',
+	function ( $html, $block ) {
+		if ( ! str_contains( $block['attrs']['className'] ?? '', 'is-style-emoji' ) ) {
+			return $html;
+		}
+		return wrap_leading_emoji( $html );
+	},
+	10,
+	2
 );
