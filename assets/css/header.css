@@ -24,3 +24,19 @@
 .peak-header .wp-block-site-title {
 	margin: 0;
 }
+
+/* Navigation is always inline (no JS overlay): let the bar and menu wrap on narrow screens. */
+.peak-header__bar,
+.peak-header__end {
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+}
+
+.peak-header .wp-block-navigation {
+	--navigation-layout-gap: 0.75rem;
+}
+
+.peak-header .wp-block-navigation__container {
+	flex-wrap: wrap;
+	gap: 0.25rem 0.75rem;
+}
