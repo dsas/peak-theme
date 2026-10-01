@@ -25,7 +25,6 @@ $peak_photos  = \Peak\Site\photos_url();
 <nav class="peak-fingerpost" aria-label="<?php esc_attr_e( 'Where to next', 'peak' ); ?>">
 	<a class="peak-fingerpost__arm is-right" href="<?php echo esc_url( $peak_writing ); ?>"><?php esc_html_e( 'Writing', 'peak' ); ?></a>
 	<a class="peak-fingerpost__arm is-left" href="<?php echo esc_url( $peak_photos ); ?>"><?php esc_html_e( 'Photos', 'peak' ); ?></a>
-	<a class="peak-fingerpost__arm is-right" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'peak' ); ?></a>
 </nav>
 <!-- /wp:html -->
 </div>
