@@ -65,9 +65,9 @@ svg.peak-hero__layer {
 			animation-range: 0 80vh;
 		}
 
-		.peak-hero__sun { --shift: 120%; }
-		.peak-hero__layer--far { --shift: 18%; }
-		.peak-hero__layer--mid { --shift: 9%; }
+		.peak-hero__sun { --shift: 320%; }
+		.peak-hero__layer--far { --shift: 45%; }
+		.peak-hero__layer--mid { --shift: 22%; }
 		.peak-hero__layer--near { --shift: 0%; }
 	}
 }
