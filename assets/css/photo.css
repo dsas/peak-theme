@@ -118,3 +118,33 @@
 	object-fit: cover;
 	border-radius: 3px;
 }
+
+/* Tags on photo posts, as chips linking to each tag's photo grid. */
+.wp-block-post-terms.peak-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin-top: var(--wp--preset--spacing--40);
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	text-transform: none;
+	letter-spacing: normal;
+}
+
+.wp-block-post-terms.peak-tags .wp-block-post-terms__separator {
+	display: none;
+}
+
+.wp-block-post-terms.peak-tags a {
+	display: inline-block;
+	padding: 0.15rem 0.75rem;
+	border: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 50%, transparent);
+	border-radius: 999px;
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.wp-block-post-terms.peak-tags a:hover {
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary);
+}
