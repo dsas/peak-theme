@@ -10,7 +10,7 @@
 <h2 class="wp-block-heading">Who I am</h2>
 <!-- /wp:heading -->
 <!-- wp:image {"sizeSlug":"medium","align":"right","className":"is-style-rounded peak-about-photo"} -->
-<figure class="wp-block-image alignright size-medium is-style-rounded peak-about-photo"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/portrait-placeholder.svg' ) ); ?>" alt="" width="160" height="160"/></figure>
+<figure class="wp-block-image alignright size-medium is-style-rounded peak-about-photo"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/portrait-placeholder.svg' ) ); ?>" alt=""/></figure>
 <!-- /wp:image -->
 <!-- wp:paragraph -->
 <p>I’m Dean, a software engineer at Automattic. I live in Chesterfield, on the edge of the Peak District, with my family.</p>

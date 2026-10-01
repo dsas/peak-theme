@@ -29,7 +29,7 @@
 	margin: 0.15rem 0;
 }
 
-.peak-facts th {
+.wp-block-table.peak-facts th {
 	width: 9rem;
 	text-align: left;
 	vertical-align: top;
@@ -39,7 +39,7 @@
 	color: var(--wp--preset--color--muted);
 }
 
-.peak-facts :where(th, td) {
+.wp-block-table.peak-facts :is(th, td) {
 	border: 0;
 	border-bottom: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 25%, transparent);
 	padding: 0.5rem 0;
@@ -50,6 +50,9 @@
 }
 
 .peak-about-photo img {
+	width: 10rem;
+	height: 10rem;
+	object-fit: cover;
 	border-radius: 50%;
 }
 
