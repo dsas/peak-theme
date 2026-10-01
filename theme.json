@@ -103,7 +103,7 @@
 				"typography": { "fontFamily": "var(--wp--preset--font-family--ui)", "fontSize": "0.75rem", "textTransform": "uppercase", "letterSpacing": "0.06em" }
 			},
 			"core/navigation": {
-				"typography": { "fontFamily": "var(--wp--preset--font-family--ui)", "fontSize": "var(--wp--preset--font-size--small)" }
+				"typography": { "fontFamily": "var(--wp--preset--font-family--ui)", "fontSize": "0.9375rem" }
 			},
 			"core/site-title": {
 				"typography": { "fontFamily": "var(--wp--preset--font-family--mono)", "fontSize": "1rem", "fontWeight": "400" },
