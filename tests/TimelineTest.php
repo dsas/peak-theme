@@ -48,4 +48,28 @@ final class TimelineTest extends TestCase {
 		$this->assertSame( 'A great link about keyboards and why I…', display_title( '', 'A great link about keyboards and why I keep buying them' ) );
 		$this->assertSame( 'Untitled', display_title( '   ', '' ) );
 	}
+
+	public function test_tag_context(): void {
+		$args = query_args( [ 'tag_id' => 12 ] );
+		$this->assertSame( 12, $args['tag_id'] );
+	}
+
+	public function test_taxonomy_context_is_anded_with_photo_exclusion(): void {
+		$args = query_args( [ 'taxonomy' => 'post_format', 'term_id' => 31 ] );
+		$this->assertSame( 'AND', $args['tax_query']['relation'] );
+		$this->assertSame( 'NOT IN', $args['tax_query'][0]['operator'] );
+		$this->assertSame( [ 'taxonomy' => 'post_format', 'field' => 'term_id', 'terms' => [ 31 ] ], $args['tax_query'][1] );
+	}
+
+	public function test_no_taxonomy_leaves_tax_query_without_relation(): void {
+		$this->assertArrayNotHasKey( 'relation', query_args( [] )['tax_query'] );
+	}
+
+	public function test_month_and_day(): void {
+		$args = query_args( [ 'year' => 2012, 'monthnum' => 5, 'day' => 9 ] );
+		$this->assertSame( 2012, $args['year'] );
+		$this->assertSame( 5, $args['monthnum'] );
+		$this->assertSame( 9, $args['day'] );
+		$this->assertArrayNotHasKey( 'monthnum', query_args( [ 'year' => 2012 ] ) );
+	}
 }

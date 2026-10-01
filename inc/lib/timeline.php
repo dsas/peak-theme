@@ -31,8 +31,21 @@ function query_args( array $ctx ): array {
 	if ( ! empty( $ctx['category'] ) ) {
 		$args['cat'] = (int) $ctx['category'];
 	}
-	if ( ! empty( $ctx['year'] ) ) {
-		$args['year'] = (int) $ctx['year'];
+	if ( ! empty( $ctx['tag_id'] ) ) {
+		$args['tag_id'] = (int) $ctx['tag_id'];
+	}
+	if ( ! empty( $ctx['taxonomy'] ) && ! empty( $ctx['term_id'] ) ) {
+		$args['tax_query']['relation'] = 'AND';
+		$args['tax_query'][]           = [
+			'taxonomy' => (string) $ctx['taxonomy'],
+			'field'    => 'term_id',
+			'terms'    => [ (int) $ctx['term_id'] ],
+		];
+	}
+	foreach ( [ 'year', 'monthnum', 'day' ] as $key ) {
+		if ( ! empty( $ctx[ $key ] ) ) {
+			$args[ $key ] = (int) $ctx[ $key ];
+		}
 	}
 	if ( ! empty( $ctx['related_to'] ) ) {
 		$args['post__not_in'] = [ (int) $ctx['related_to'] ];

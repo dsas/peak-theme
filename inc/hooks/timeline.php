@@ -11,8 +11,21 @@ function current_context(): array {
 	if ( is_category() ) {
 		return [ 'category' => get_queried_object_id() ];
 	}
+	if ( is_tag() ) {
+		return [ 'tag_id' => get_queried_object_id() ];
+	}
+	if ( is_tax() ) {
+		$term = get_queried_object();
+		return $term instanceof \WP_Term ? [ 'taxonomy' => $term->taxonomy, 'term_id' => $term->term_id ] : [];
+	}
 	if ( is_date() ) {
-		return [ 'year' => (int) get_query_var( 'year' ) ];
+		return array_filter(
+			[
+				'year'     => (int) get_query_var( 'year' ),
+				'monthnum' => (int) get_query_var( 'monthnum' ),
+				'day'      => (int) get_query_var( 'day' ),
+			]
+		);
 	}
 	return [];
 }
