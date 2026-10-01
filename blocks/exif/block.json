@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "peak/exif",
+	"title": "Photo details",
+	"category": "theme",
+	"description": "Camera details from the featured image.",
+	"usesContext": [ "postId" ],
+	"supports": { "html": false },
+	"editorScript": "peak-blocks-editor",
+	"render": "file:./render.php"
+}
