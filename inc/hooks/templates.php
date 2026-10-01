@@ -26,6 +26,18 @@ add_filter(
 	}
 );
 
+// Archives with photos but no writing (photos site) use the photo grid instead of the empty timeline.
+foreach ( [ 'archive', 'date', 'tag', 'category', 'taxonomy' ] as $peak_archive ) {
+	add_filter(
+		"{$peak_archive}_template_hierarchy",
+		fn( $templates ) => Formats\archive_hierarchy(
+			$templates,
+			have_posts(),
+			[] !== \Peak\Timeline\items( \Peak\Timeline\current_context() )
+		)
+	);
+}
+
 // Photo posts without a featured image use their first image (gallery or classic content).
 add_filter(
 	'post_thumbnail_id',

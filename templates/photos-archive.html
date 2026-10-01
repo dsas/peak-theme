@@ -1,0 +1,18 @@
+<!-- wp:template-part {"slug":"header","area":"header"} /-->
+<!-- wp:group {"tagName":"main","align":"full","className":"peak-main peak-photos","layout":{"type":"default"}} -->
+<main class="wp-block-group alignfull peak-main peak-photos">
+<!-- wp:query-title {"type":"archive","showPrefix":false,"className":"peak-photos__title"} /-->
+<!-- wp:query {"queryId":3,"query":{"inherit":true}} -->
+<div class="wp-block-query">
+<!-- wp:post-template {"className":"is-style-justified"} -->
+<!-- wp:post-featured-image {"isLink":true,"sizeSlug":"medium_large"} /-->
+<!-- /wp:post-template -->
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+<!-- wp:query-pagination-previous {"label":"Newer"} /-->
+<!-- wp:query-pagination-next {"label":"Older"} /-->
+<!-- /wp:query-pagination -->
+</div>
+<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","area":"footer"} /-->

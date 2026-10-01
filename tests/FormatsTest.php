@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use function Peak\Formats\{ is_photo_format, single_hierarchy, frontpage_hierarchy, first_image_id, merge_excluded };
+use function Peak\Formats\{ is_photo_format, single_hierarchy, frontpage_hierarchy, first_image_id, merge_excluded, archive_hierarchy };
 
 final class FormatsTest extends TestCase {
 	public function test_image_and_gallery_are_photo_formats(): void {
@@ -74,5 +74,14 @@ final class FormatsTest extends TestCase {
 		$this->assertSame( [ 3, 9, 10 ], merge_excluded( '3, 9', [ 9, 10 ] ) );
 		$this->assertSame( [ 1, 2 ], merge_excluded( [ 1 ], [ 2 ] ) );
 		$this->assertSame( [ 5 ], merge_excluded( '', [ 5 ] ) );
+	}
+
+	public function test_archive_hierarchy_prepends_photos_archive_when_only_photos(): void {
+		$this->assertSame( [ 'photos-archive.php', 'archive.php' ], archive_hierarchy( [ 'archive.php' ], true, false ) );
+	}
+
+	public function test_archive_hierarchy_unchanged_when_writing_exists_or_no_posts(): void {
+		$this->assertSame( [ 'archive.php' ], archive_hierarchy( [ 'archive.php' ], true, true ) );
+		$this->assertSame( [ 'archive.php' ], archive_hierarchy( [ 'archive.php' ], false, false ) );
 	}
 }

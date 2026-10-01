@@ -80,3 +80,11 @@ function merge_excluded( $existing, array $ids ): array {
 	sort( $merged );
 	return $merged;
 }
+
+/** Archives with photos but no writing (the photos site) use the photo grid template. */
+function archive_hierarchy( array $templates, bool $has_posts, bool $has_writing ): array {
+	if ( ! $has_posts || $has_writing ) {
+		return $templates;
+	}
+	return array_values( array_unique( array_merge( [ 'photos-archive.php' ], $templates ) ) );
+}
