@@ -33,6 +33,16 @@
 	opacity: 0.85;
 }
 
+/* Small screens: keep the sun below the title (title ends ~12vh + two lines from the top). */
+@media (max-width: 600px) {
+	.peak-hero__sun {
+		top: auto;
+		bottom: 58%;
+		left: 74%;
+		width: 44px;
+	}
+}
+
 svg.peak-hero__layer {
 	position: absolute;
 	left: 0;
@@ -68,7 +78,8 @@ svg.peak-hero__layer {
 }
 
 .peak-home-valley {
-	margin-block-start: 0 !important;
+	/* -1px hides a sub-pixel seam from the hero gradient at fractional boundaries. */
+	margin-block-start: -1px !important;
 	padding-block: var(--wp--preset--spacing--50) var(--wp--preset--spacing--60);
 }
 
