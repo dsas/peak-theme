@@ -32,14 +32,15 @@ final class AspectTest extends TestCase {
 		$this->assertSame( 0, post_id_from_class( 'wp-block-post type-post status-publish' ) );
 	}
 
-	public function test_sizes_attr_is_full_width_on_phones_and_row_height_based_above(): void {
-		$this->assertSame( '(max-width: 600px) 100vw, 450px', sizes_attr( 1.5 ) );
-		$this->assertSame( '(max-width: 600px) 100vw, 1255px', sizes_attr( 4.1811 ) );
+	public function test_sizes_attr_by_screen_size(): void {
+		// Phones: full width. Tablets: ratio × 34vw rows. Desktop: ratio × 300px rows.
+		$this->assertSame( '(max-width: 600px) 100vw, (max-width: 1100px) 51vw, 450px', sizes_attr( 1.5 ) );
+		$this->assertSame( '(max-width: 600px) 100vw, (max-width: 1100px) 26vw, 225px', sizes_attr( 0.75 ) );
 	}
 
-	public function test_sizes_attr_caps_at_1440(): void {
-		$this->assertSame( '(max-width: 600px) 100vw, 1200px', sizes_attr( 4.0 ) );
-		$this->assertSame( '(max-width: 600px) 100vw, 1440px', sizes_attr( 10.0 ) );
+	public function test_sizes_attr_caps_wide_tiles(): void {
+		$this->assertSame( '(max-width: 600px) 100vw, (max-width: 1100px) 100vw, 1200px', sizes_attr( 4.0 ) );
+		$this->assertSame( '(max-width: 600px) 100vw, (max-width: 1100px) 100vw, 1440px', sizes_attr( 10.0 ) );
 	}
 
 	public function test_portrait_hero_sizes_use_screen_height_on_landscape_screens(): void {
