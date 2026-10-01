@@ -48,3 +48,20 @@
 .peak-single__nav a {
 	font-size: 1.1em;
 }
+
+/* Featured image: room before the text; portrait images are capped at screen height, centred, uncropped. */
+.peak-single .peak-single__image {
+	margin-bottom: var(--wp--preset--spacing--50);
+}
+
+.peak-single .peak-single__image.is-portrait {
+	text-align: center;
+}
+
+.peak-single .peak-single__image.is-portrait img {
+	width: auto !important;
+	max-width: 100%;
+	max-height: 80vh;
+	height: auto !important;
+	margin-inline: auto;
+}

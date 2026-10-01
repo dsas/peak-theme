@@ -150,3 +150,66 @@
 .peak-updated > * {
 	margin: 0;
 }
+
+/* Quotes: a moss rule, larger italic serif, attribution in small grey sans. */
+.wp-block-post-content .wp-block-quote {
+	margin-inline: 0;
+	padding: 0.2rem 0 0.2rem 1.25rem;
+	border-left: 3px solid var(--wp--preset--color--primary);
+}
+
+.wp-block-post-content .wp-block-quote > p {
+	font-size: 1.15em;
+	font-style: italic;
+	line-height: 1.5;
+}
+
+.wp-block-post-content .wp-block-quote cite {
+	display: block;
+	margin-top: 0.4rem;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-style: normal;
+	color: var(--wp--preset--color--muted);
+}
+
+/* Footnotes: smaller, under a light rule. */
+.wp-block-post-content .wp-block-footnotes {
+	margin-top: var(--wp--preset--spacing--50);
+	padding-top: var(--wp--preset--spacing--30);
+	padding-left: 1.2rem;
+	border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 30%, transparent);
+	font-size: 0.85em;
+	color: var(--wp--preset--color--muted);
+}
+
+/* Code blocks (and preformatted text): a tinted panel, JetBrains Mono, long lines scroll rather than wrap. */
+.wp-block-post-content :is(.wp-block-code, .wp-block-preformatted) {
+	padding: 1rem 1.25rem;
+	overflow-x: auto;
+	border: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 20%, transparent);
+	border-radius: 4px;
+	background: color-mix(in srgb, var(--wp--preset--color--contrast) 5%, var(--wp--preset--color--base));
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 0.8em;
+	line-height: 1.6;
+}
+
+.wp-block-post-content .wp-block-code code {
+	font-family: inherit;
+	white-space: pre;
+	overflow-wrap: normal;
+}
+
+.wp-block-post-content .wp-block-preformatted {
+	white-space: pre;
+}
+
+/* Inline code in running text. */
+.wp-block-post-content :where(p, li, td, figcaption) code {
+	padding: 0.1em 0.3em;
+	border-radius: 3px;
+	background: color-mix(in srgb, var(--wp--preset--color--contrast) 6%, transparent);
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 0.82em;
+}

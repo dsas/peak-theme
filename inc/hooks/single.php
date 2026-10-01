@@ -92,3 +92,26 @@ add_filter(
 	10,
 	2
 );
+
+// Writing posts: mark portrait featured images so CSS can cap their height instead of
+// showing them 68rem wide and well over a screen tall.
+add_filter(
+	'render_block_core/post-featured-image',
+	function ( $html, $block ) {
+		if ( '' === $html || ! str_contains( $block['attrs']['className'] ?? '', 'peak-single__image' ) ) {
+			return $html;
+		}
+		$thumb = (int) get_post_thumbnail_id( get_queried_object_id() );
+		$meta  = $thumb ? wp_get_attachment_metadata( $thumb ) : null;
+		if ( 'portrait' !== \Peak\Aspect\orientation( \Peak\Aspect\ratio( $meta ?: null ) ) ) {
+			return $html;
+		}
+		$tags = new \WP_HTML_Tag_Processor( $html );
+		if ( $tags->next_tag() ) {
+			$tags->add_class( 'is-portrait' );
+		}
+		return $tags->get_updated_html();
+	},
+	10,
+	2
+);
