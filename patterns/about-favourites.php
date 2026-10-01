@@ -17,7 +17,7 @@ $peak_favourites = [
 <!-- wp:heading -->
 <h2 class="wp-block-heading">Favourites</h2>
 <!-- /wp:heading -->
-<!-- wp:group {"className":"peak-favourites","layout":{"type":"grid","minimumColumnWidth":"8rem"}} -->
+<!-- wp:group {"className":"peak-favourites","layout":{"type":"default"}} -->
 <div class="wp-block-group peak-favourites">
 <?php foreach ( $peak_favourites as $peak_category => $peak_placeholder ) : ?>
 <!-- wp:group {"className":"peak-favourite","layout":{"type":"default"}} -->
