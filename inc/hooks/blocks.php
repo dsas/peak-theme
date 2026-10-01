@@ -15,7 +15,7 @@ add_action(
 		wp_register_script(
 			'peak-blocks-editor',
 			get_theme_file_uri( 'blocks/editor.js' ),
-			[ 'wp-blocks', 'wp-element', 'wp-server-side-render', 'wp-block-editor' ],
+			[ 'wp-blocks', 'wp-element', 'wp-server-side-render', 'wp-block-editor', 'wp-components', 'wp-i18n' ],
 			(string) filemtime( get_theme_file_path( 'blocks/editor.js' ) ),
 			true
 		);
