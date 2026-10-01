@@ -38,3 +38,9 @@ function sizes_attr( float $ratio ): string {
 	$desktop = min( 1440, (int) ceil( $ratio * 300 ) );
 	return "(max-width: 600px) {$mobile}px, {$desktop}px";
 }
+
+/** `sizes` for a portrait hero: full width on portrait screens, otherwise screen-height-limited (92vh × ratio). */
+function portrait_hero_sizes( float $ratio ): string {
+	$r = rtrim( rtrim( number_format( $ratio, 4, '.', '' ), '0' ), '.' );
+	return "(orientation: portrait) 100vw, calc(92vh * {$r})";
+}

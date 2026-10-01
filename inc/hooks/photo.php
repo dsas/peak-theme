@@ -60,9 +60,18 @@ add_filter(
 		if ( '' === $html || ! hero_id() || ! str_contains( $block['attrs']['className'] ?? '', 'peak-photo__image' ) ) {
 			return $html;
 		}
-		$tags = new \WP_HTML_Tag_Processor( $html );
+		$ratio = Aspect\ratio( wp_get_attachment_metadata( hero_id() ) ?: null );
+		$tags  = new \WP_HTML_Tag_Processor( $html );
 		if ( $tags->next_tag() ) {
-			$tags->add_class( 'is-' . Aspect\orientation( Aspect\ratio( wp_get_attachment_metadata( hero_id() ) ?: null ) ) );
+			$tags->add_class( 'is-' . Aspect\orientation( $ratio ) );
+		}
+		if ( $tags->next_tag( 'img' ) ) {
+			if ( $ratio < 1 ) {
+				$tags->set_attribute( 'sizes', Aspect\portrait_hero_sizes( $ratio ) );
+			}
+			if ( '' === trim( (string) $tags->get_attribute( 'alt' ) ) ) {
+				$tags->set_attribute( 'alt', get_the_title( get_queried_object_id() ) );
+			}
 		}
 		return $tags->get_updated_html();
 	},

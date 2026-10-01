@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use function Peak\Aspect\{ ratio, style_value, orientation, post_id_from_class, sizes_attr };
+use function Peak\Aspect\{ ratio, style_value, orientation, post_id_from_class, sizes_attr, portrait_hero_sizes };
 
 final class AspectTest extends TestCase {
 	public function test_ratio_from_metadata(): void {
@@ -40,5 +40,10 @@ final class AspectTest extends TestCase {
 	public function test_sizes_attr_caps_at_1440(): void {
 		$this->assertSame( '(max-width: 600px) 440px, 1200px', sizes_attr( 4.0 ) );
 		$this->assertSame( '(max-width: 600px) 1100px, 1440px', sizes_attr( 10.0 ) );
+	}
+
+	public function test_portrait_hero_sizes_use_screen_height_on_landscape_screens(): void {
+		$this->assertSame( '(orientation: portrait) 100vw, calc(92vh * 0.6667)', portrait_hero_sizes( 0.6667 ) );
+		$this->assertSame( '(orientation: portrait) 100vw, calc(92vh * 0.75)', portrait_hero_sizes( 0.75 ) );
 	}
 }
