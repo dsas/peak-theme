@@ -72,6 +72,36 @@
 	}
 }
 
+/*
+ * Wide and full blocks inside post content. Core constrains the post-content wrapper to the
+ * content width, so its aligned children can't grow past it; these break them back out.
+ * !important beats core's constrained-layout `margin-inline: auto !important` and max-width.
+ */
+:is(.peak-single, .peak-page) .wp-block-post-content > .alignwide {
+	--peak-wide: min(var(--wp--style--global--wide-size), 100vw - var(--wp--style--root--padding-left) - var(--wp--style--root--padding-right));
+	box-sizing: border-box;
+	width: var(--peak-wide);
+	max-width: none !important;
+	margin-inline: calc((100% - var(--peak-wide)) / 2) !important;
+}
+
+:is(.peak-single, .peak-page) .wp-block-post-content > .alignfull {
+	box-sizing: border-box;
+	width: 100vw;
+	max-width: none !important;
+	margin-inline: calc(50% - 50vw) !important;
+}
+
+/* 100vw includes any scrollbar, so clip the sliver it would overhang. */
+:is(.peak-single, .peak-page) {
+	overflow-x: clip;
+}
+
+/* Room between a page title and content that starts with a paragraph. */
+.peak-page > .wp-block-post-title + .wp-block-post-content {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
 /* Room above section headings in posts and pages. */
 :is(.peak-single, .peak-page) .wp-block-post-content > h2 {
 	margin-block-start: var(--wp--preset--spacing--50);
