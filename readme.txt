@@ -10,7 +10,7 @@ A warm, textured block theme for deansas.org and photos.deansas.org.
 
 == Description ==
 
-Peak is a block theme with a paper-and-hills look rooted in the Peak District. It has two colourways, Peak (light) and Dusk (dark), that visitors can switch between; a writing timeline with a year rail and topic chips; a justified photo grid; photo posts with a full-bleed image and camera details; and a landscape homepage hero.
+Peak is a block theme with a paper-and-hills look rooted in the Peak District. It has two colourways, Peak (light) and Dusk (dark), that visitors can switch between; a writing timeline with a year rail and topic chips; a justified photo grid; photo posts with a full-width image and galleries in justified rows; and a landscape homepage hero with gentle parallax.
 
 Image and Gallery post formats are treated as photo posts. Everything else is writing.
 
