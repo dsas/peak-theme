@@ -1,0 +1,89 @@
+.peak-hero {
+	position: relative;
+	overflow: hidden;
+	min-height: clamp(420px, 78vh, 760px);
+	margin-block-start: 0 !important;
+	padding-top: clamp(3rem, 12vh, 8rem);
+	background: linear-gradient(var(--wp--custom--sky--top), var(--wp--custom--sky--bottom));
+}
+
+.peak-hero__scene {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+}
+
+.peak-hero__title {
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	font-size: var(--wp--preset--font-size--xx-large);
+}
+
+.peak-hero__sun {
+	position: absolute;
+	left: 66%;
+	top: 22%;
+	width: clamp(56px, 7vw, 110px);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--wp--custom--sky--sun);
+	opacity: 0.85;
+}
+
+svg.peak-hero__layer {
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 100%;
+	height: 70%;
+}
+
+.peak-hero__layer--far path { fill: var(--wp--custom--hill--1); }
+.peak-hero__layer--mid path { fill: var(--wp--custom--hill--2); }
+.peak-hero__layer--near path { fill: var(--wp--custom--hill--3); }
+
+/* Parallax: far layers drift down as the page scrolls. No JS. */
+@supports (animation-timeline: scroll()) {
+	@media (prefers-reduced-motion: no-preference) {
+		.peak-hero__layer {
+			animation: peak-parallax linear both;
+			animation-timeline: scroll(root);
+			animation-range: 0 80vh;
+		}
+
+		.peak-hero__sun { --shift: 120%; }
+		.peak-hero__layer--far { --shift: 18%; }
+		.peak-hero__layer--mid { --shift: 9%; }
+		.peak-hero__layer--near { --shift: 0%; }
+	}
+}
+
+@keyframes peak-parallax {
+	to {
+		transform: translateY(var(--shift, 0));
+	}
+}
+
+.peak-home-valley {
+	margin-block-start: 0 !important;
+	padding-block: var(--wp--preset--spacing--50) var(--wp--preset--spacing--60);
+}
+
+.peak-home-valley .peak-timeline__list time {
+	color: var(--wp--custom--valley--accent);
+}
+
+.peak-home-intro .wp-block-image {
+	flex: none;
+	margin: 0;
+}
+
+/* The valley flows straight into the footer valley on the homepage. */
+.home .peak-footer {
+	margin-block-start: 0;
+}
+
+.home .peak-footer .peak-hills {
+	display: none;
+}
