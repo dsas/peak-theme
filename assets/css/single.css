@@ -61,7 +61,7 @@
 .peak-single .peak-single__image.is-portrait img {
 	width: auto !important;
 	max-width: 100%;
-	max-height: 80vh;
+	max-height: min(55vh, 520px);
 	height: auto !important;
 	margin-inline: auto;
 }
