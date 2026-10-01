@@ -104,3 +104,18 @@ mark.peak-mark {
 	color: var(--wp--preset--color--primary);
 	font-weight: 600;
 }
+
+/* "Category" / "Tag" label above archive headings. */
+.peak-archive-label {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--muted);
+}
+
+.peak-archive-label + .wp-block-query-title {
+	margin-top: 0.1rem;
+}

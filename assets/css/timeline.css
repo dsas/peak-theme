@@ -194,3 +194,26 @@
 	object-fit: cover;
 	border-radius: 3px;
 }
+
+/* Year archives: ← older year on the left, newer year → on the right. */
+.peak-year-nav {
+	display: flex;
+	justify-content: space-between;
+	margin-top: var(--wp--preset--spacing--50);
+	padding-top: var(--wp--preset--spacing--30);
+	border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--muted) 30%, transparent);
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.peak-year-nav a {
+	text-decoration: none;
+}
+
+.peak-year-nav a:hover {
+	text-decoration: underline;
+}
+
+.peak-year-nav__newer {
+	margin-left: auto;
+}

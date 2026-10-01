@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use function Peak\Timeline\{ query_args, group_by_year, years, display_title };
+use function Peak\Timeline\{ query_args, group_by_year, years, display_title, adjacent_years };
 
 final class TimelineTest extends TestCase {
 	public function test_default_query_is_all_writing_newest_first(): void {
@@ -71,5 +71,18 @@ final class TimelineTest extends TestCase {
 		$this->assertSame( 5, $args['monthnum'] );
 		$this->assertSame( 9, $args['day'] );
 		$this->assertArrayNotHasKey( 'monthnum', query_args( [ 'year' => 2012 ] ) );
+	}
+
+	public function test_adjacent_years_skip_empty_years(): void {
+		$years = [ 2026, 2024, 2022, 2019 ];
+		$this->assertSame( [ 'older' => 2022, 'newer' => 2026 ], adjacent_years( $years, 2024 ) );
+		$this->assertSame( [ 'older' => null, 'newer' => 2022 ], adjacent_years( $years, 2019 ) );
+		$this->assertSame( [ 'older' => 2024, 'newer' => null ], adjacent_years( $years, 2026 ) );
+	}
+
+	public function test_adjacent_years_for_a_year_with_no_posts(): void {
+		// e.g. /2021/ when nothing was written that year: still offer the nearest years either side.
+		$this->assertSame( [ 'older' => 2019, 'newer' => 2022 ], adjacent_years( [ 2026, 2024, 2022, 2019 ], 2021 ) );
+		$this->assertSame( [ 'older' => null, 'newer' => null ], adjacent_years( [], 2021 ) );
 	}
 }

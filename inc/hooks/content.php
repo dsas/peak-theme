@@ -45,3 +45,19 @@ add_filter(
 	10,
 	2
 );
+
+// Category and tag archives: a small "Category" / "Tag" label above the archive heading,
+// so a bare term name such as "reading" says what it is.
+add_filter(
+	'render_block_core/query-title',
+	function ( $html ) {
+		if ( is_category() ) {
+			$label = __( 'Category', 'peak' );
+		} elseif ( is_tag() ) {
+			$label = __( 'Tag', 'peak' );
+		} else {
+			return $html;
+		}
+		return '<p class="peak-archive-label">' . esc_html( $label ) . '</p>' . $html;
+	}
+);

@@ -82,3 +82,18 @@ function display_title( string $title, string $excerpt ): string {
 	}
 	return count( $words ) > 8 ? implode( ' ', array_slice( $words, 0, 8 ) ) . '…' : implode( ' ', $words );
 }
+
+/**
+ * The nearest years with posts either side of $year.
+ *
+ * @param int[] $years Years with posts (any order).
+ * @return array{older: ?int, newer: ?int}
+ */
+function adjacent_years( array $years, int $year ): array {
+	$older = array_filter( $years, fn( $y ) => $y < $year );
+	$newer = array_filter( $years, fn( $y ) => $y > $year );
+	return [
+		'older' => $older ? max( $older ) : null,
+		'newer' => $newer ? min( $newer ) : null,
+	];
+}

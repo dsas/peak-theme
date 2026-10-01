@@ -5,7 +5,7 @@
  * @package Peak
  */
 
-use function Peak\Timeline\{ current_context, items, group_by_year };
+use function Peak\Timeline\{ current_context, items, group_by_year, years, adjacent_years };
 
 $peak_limit = (int) ( $attributes['limit'] ?? 0 );
 $peak_ctx   = current_context();
@@ -65,7 +65,7 @@ $peak_thumbs  = ! empty( $attributes['showThumbnails'] );
 					<li class="peak-timeline__item<?php echo $peak_thumbs && $peak_item['thumbnail'] ? ' has-thumbnail' : ''; ?>">
 						<p class="peak-timeline__meta">
 							<time datetime="<?php echo esc_attr( $peak_item['date'] ); ?>"><?php echo esc_html( mysql2date( 'j M', $peak_item['date'] ) ); ?></time>
-							<?php if ( $peak_item['category'] ) : ?>
+							<?php if ( $peak_item['category'] && empty( $peak_ctx['category'] ) ) : // Not repeated on its own category page. ?>
 								· <a class="peak-timeline__cat" href="<?php echo esc_url( $peak_item['category_url'] ); ?>"><?php echo esc_html( $peak_item['category'] ); ?></a>
 							<?php endif; ?>
 						</p>
@@ -82,5 +82,23 @@ $peak_thumbs  = ! empty( $attributes['showThumbnails'] );
 			</ol>
 		</section>
 	<?php endforeach; ?>
+	<?php
+	// Year archives: step to the nearest older and newer years that have writing.
+	if ( ! empty( $peak_ctx['year'] ) && empty( $peak_ctx['monthnum'] ) ) :
+		$peak_adjacent = adjacent_years( years( items( [] ) ), (int) $peak_ctx['year'] );
+		if ( $peak_adjacent['older'] || $peak_adjacent['newer'] ) :
+			?>
+	<nav class="peak-year-nav" aria-label="<?php esc_attr_e( 'Other years', 'peak' ); ?>">
+		<?php if ( $peak_adjacent['older'] ) : ?>
+			<a class="peak-year-nav__older" href="<?php echo esc_url( get_year_link( $peak_adjacent['older'] ) ); ?>">← <?php echo (int) $peak_adjacent['older']; ?></a>
+		<?php endif; ?>
+		<?php if ( $peak_adjacent['newer'] ) : ?>
+			<a class="peak-year-nav__newer" href="<?php echo esc_url( get_year_link( $peak_adjacent['newer'] ) ); ?>"><?php echo (int) $peak_adjacent['newer']; ?> →</a>
+		<?php endif; ?>
+	</nav>
+			<?php
+		endif;
+	endif;
+	?>
 <?php endif; ?>
 </div>
