@@ -18,7 +18,7 @@ Both sites run the same theme, so they can merge later without a redesign.
 - **Block styles:** Boxout (on Group) for asides, Timeline (on List; start each item with bold text for its date) and Emoji list (on List; start each item with an emoji).
 - **Patterns** (in the Peak category): About: who I am, About: favourites, Colophon, Home intro, Timeline.
 - **Galleries:** use the core Gallery block. In photo posts it becomes wide justified rows; Jetpack's tiled gallery keeps its own layout.
-- **Featured images on writing posts:** landscape and square images get the title over the bottom of the image; portrait images keep the title above.
+- **Featured images on writing posts:** landscape and square images get the title over the bottom of the image; portrait images keep the title above. Recommended: 16:9, at least 2200px wide, subject near the centre (crops are taken from the middle) and the bottom-left fairly quiet (the title sits there).
 - **Untitled posts** (old asides) are fine: the theme uses their first few words wherever a title is needed.
 
 ## Colourways
