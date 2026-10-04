@@ -57,7 +57,8 @@ add_filter(
 );
 
 // Names and descriptions for the theme's own templates in the Site Editor, which otherwise
-// shows bare file names such as "single-photo".
+// shows bare file names such as "single-photo". Not for Photos grid: listing a template here
+// makes it a standard template type, and pages can only pick custom ones (theme.json names it).
 add_filter(
 	'default_template_types',
 	function ( $types ) {
@@ -68,10 +69,6 @@ add_filter(
 		$types['photos-archive'] = [
 			'title'       => __( 'Photo archive', 'peak' ),
 			'description' => __( 'Displays a tag, category or date archive that has only photo posts, as a justified photo grid.', 'peak' ),
-		];
-		$types['photos-grid']    = [
-			'title'       => __( 'Photos grid', 'peak' ),
-			'description' => __( 'A page of all photo posts in justified rows. Used as the front page of photos.deansas.org.', 'peak' ),
 		];
 		$types['page-now']       = [
 			'title'       => __( 'Page: Now', 'peak' ),
