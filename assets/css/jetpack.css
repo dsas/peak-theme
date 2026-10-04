@@ -1,0 +1,48 @@
+/* Jetpack extras: the Like button and the WordPress.com comment form. */
+
+/*
+ * In Dusk the page's colour scheme is dark, and browsers paint an opaque white backdrop
+ * behind a cross-origin iframe whose scheme differs from its own. These iframes are light
+ * documents, so declaring them light keeps their backgrounds transparent.
+ */
+.sd-like iframe,
+.jetpack-likes-widget-wrapper iframe,
+#jetpack_remote_comment {
+	color-scheme: light;
+}
+
+/* Room above the Like button, and its "Like this:" heading set like the theme's small labels. */
+.wp-block-post-content div.sharedaddy.sd-like {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.wp-block-post-content div.sharedaddy h3.sd-title {
+	margin: 0 0 0.5rem;
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--muted);
+}
+
+.wp-block-post-content div.sharedaddy h3.sd-title::before {
+	display: none;
+}
+
+/*
+ * Jetpack reads the font and colours of these two hidden elements and passes them to the
+ * Like iframe, so "Be the first to like this." uses the theme's UI font, text and link colours.
+ */
+.wp-block-post-content .sharedaddy :is(.sd-text-color, .sd-link-color) {
+	font-family: var(--wp--preset--font-family--ui);
+	font-size: 14px;
+}
+
+.wp-block-post-content .sharedaddy .sd-text-color {
+	color: var(--wp--preset--color--muted);
+}
+
+.wp-block-post-content .sharedaddy .sd-link-color {
+	color: var(--wp--preset--color--accent);
+}
