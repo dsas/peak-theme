@@ -77,3 +77,13 @@ add_filter(
 		return $types;
 	}
 );
+
+// Post formats: Image and Gallery mark photo posts; Aside and Link are used by older writing.
+// Without this, WordPress hides the Format setting in the editor and the default post
+// format option in Settings → Writing (existing formats still work either way).
+add_action(
+	'after_setup_theme',
+	function () {
+		add_theme_support( 'post-formats', [ 'image', 'gallery', 'aside', 'link' ] );
+	}
+);
