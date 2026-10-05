@@ -28,6 +28,24 @@ add_action(
 	}
 );
 
+// Version each Peak block's assets (e.g. the style switcher's view.js) by its files' newest
+// modification time rather than the fixed "version" in block.json. The files are served with
+// long cache lifetimes, so a fixed ?ver= would keep returning visitors on the old script.
+add_filter(
+	'block_type_metadata',
+	function ( $metadata ) {
+		if ( ! str_starts_with( $metadata['name'] ?? '', 'peak/' ) || empty( $metadata['file'] ) ) {
+			return $metadata;
+		}
+		$files = glob( dirname( $metadata['file'] ) . '/*' ) ?: [];
+		$mtime = max( array_map( 'filemtime', $files ) ?: [ 0 ] );
+		if ( $mtime ) {
+			$metadata['version'] = (string) $mtime;
+		}
+		return $metadata;
+	}
+);
+
 // The year rail and style switcher only make sense in templates: keep them out of the
 // inserter when writing posts and pages (the Site Editor still offers them). Done in the
 // editor script, so blocks that other plugins register only in JavaScript aren't affected.
