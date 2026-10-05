@@ -1,4 +1,4 @@
-/* Jetpack extras: the Like button and the WordPress.com comment form. */
+/* Jetpack extras: Like buttons (on posts and on comments) and the WordPress.com comment form. */
 
 /*
  * In Dusk the page's colour scheme is dark, and browsers paint an opaque white backdrop
@@ -7,6 +7,7 @@
  */
 .sd-like iframe,
 .jetpack-likes-widget-wrapper iframe,
+.jetpack-comment-likes-widget-wrapper iframe,
 #jetpack_remote_comment {
 	color-scheme: light;
 }
