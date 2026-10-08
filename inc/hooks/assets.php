@@ -22,15 +22,16 @@ add_action(
 	}
 );
 
-// The cyclist on the homepage hills.
-add_action(
-	'wp_enqueue_scripts',
-	function () {
-		if ( ! is_front_page() ) {
-			return;
+// The cyclist on the homepage hills: loaded only when the hero's hills are on the page
+// (not, for example, on photos.deansas.org, whose front page is the photo grid).
+add_filter(
+	'render_block_core/html',
+	function ( $content ) {
+		if ( ! is_admin() && str_contains( $content, 'peak-hero__layer--near' ) ) {
+			$path = get_theme_file_path( 'assets/js/rider.js' );
+			wp_enqueue_script( 'peak-rider', get_theme_file_uri( 'assets/js/rider.js' ), [], (string) filemtime( $path ), [ 'strategy' => 'defer', 'in_footer' => true ] );
 		}
-		$path = get_theme_file_path( 'assets/js/rider.js' );
-		wp_enqueue_script( 'peak-rider', get_theme_file_uri( 'assets/js/rider.js' ), [], (string) filemtime( $path ), [ 'strategy' => 'defer', 'in_footer' => true ] );
+		return $content;
 	}
 );
 
