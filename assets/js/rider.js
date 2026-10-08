@@ -4,6 +4,7 @@
  * Reduced motion: the rider is already parked on the hilltop. Without JS there's no rider.
  */
 (() => {
+	const script = document.currentScript;
 	const scene = document.querySelector('.peak-hero__scene');
 	const near = scene && scene.querySelector('.peak-hero__layer--near');
 	if (!near) return;
@@ -109,4 +110,19 @@
 
 	addEventListener('resize', () => requestAnimationFrame(draw));
 	draw();
+
+	// Easter egg: the homepage with #sushi turns on sushi.js for this browser; #nosushi turns it off.
+	// The fragment never reaches the server, and it's taken out of the address bar.
+	let sushi = location.hash === '#sushi';
+	try {
+		if (sushi) localStorage.setItem('peak-sushi', '1');
+		if (location.hash === '#nosushi') localStorage.removeItem('peak-sushi');
+		sushi = localStorage.getItem('peak-sushi') === '1';
+	} catch (e) {}
+	if (/^#(no)?sushi$/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
+	if (sushi && script) {
+		const s = document.createElement('script');
+		s.src = script.src.replace('/rider.js', '/sushi.js');
+		document.body.appendChild(s);
+	}
 })();

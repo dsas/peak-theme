@@ -33,6 +33,7 @@ Edit colourways in `theme.json` and `styles/*.json`, not in Site Editor → Styl
 - `inc/hooks/`: the WordPress wiring (filters and actions). Both folders are loaded automatically by `functions.php`.
 - `assets/css/`: one stylesheet per area, all enqueued automatically on the front end and in the editor.
 - `assets/js/rider.js`: the cyclist who rides along the homepage hills once when the page loads (homepage only).
+- `assets/js/sushi.js`: an easter egg; visit the homepage with `#sushi` to turn it on in that browser, `#nosushi` to turn it off.
 - `blocks/`: the theme's blocks (Writing timeline, Year rail, Style switcher), each registered from its `block.json`. They render on the server; `blocks/editor.js` gives them a live preview and settings in the editor.
 - `templates/`, `parts/`, `patterns/`, `styles/`: as in any block theme.
 

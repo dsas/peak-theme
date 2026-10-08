@@ -115,9 +115,63 @@ svg.peak-hero__layer {
 	filter: drop-shadow(0 0 2px var(--wp--custom--rider--rear)) drop-shadow(0 0 4px var(--wp--custom--rider--rear-glow));
 }
 
+/* Easter egg (assets/js/sushi.js, homepage with #sushi): a man on the hill throws sushi at the rider. */
+.peak-thrower,
+.peak-sushi {
+	position: absolute;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+}
+
+.peak-thrower {
+	width: 34px;
+	transform-origin: 50% 100%;
+	color: var(--wp--custom--hill--3);
+}
+
+.peak-thrower svg,
+.peak-sushi svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: visible;
+}
+
+.peak-thrower__arm {
+	transform-origin: 15px 21px;
+	transform: rotate(35deg);
+	transition: transform 0.12s ease-in;
+}
+
+.peak-thrower.is-throwing .peak-thrower__arm {
+	transform: rotate(-95deg);
+	transition-duration: 0.18s;
+}
+
+.peak-sushi {
+	width: 15px;
+}
+
+.peak-sushi--maki {
+	width: 10px;
+}
+
 @media (max-width: 600px) {
 	.peak-rider {
 		width: 34px;
+	}
+
+	.peak-thrower {
+		width: 26px;
+	}
+
+	.peak-sushi {
+		width: 11px;
+	}
+
+	.peak-sushi--maki {
+		width: 8px;
 	}
 }
 
