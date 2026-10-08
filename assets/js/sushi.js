@@ -89,9 +89,24 @@
 			const ground = groundAt(x) - sw * 0.55;
 			const y = Math.min(ground, hit.y - 90 * u + 420 * u * u);
 			s.style.transform = `translate(${x - sw / 2}px, ${y}px) rotate(${(y >= ground ? 0 : 540 * spin + u * 900)}deg)`;
-			if (y < ground) requestAnimationFrame(step);
+			if (y < ground) {
+				requestAnimationFrame(step);
+				return;
+			}
+			// Landed: remember where along the hill, so it stays on the ridge when the window resizes.
+			s.dataset.at = x / box().width;
+			landed.push(s);
 		};
 		requestAnimationFrame(step);
+	}
+
+	const landed = [];
+	function placeLanded() {
+		const width = box().width;
+		landed.forEach((s) => {
+			const x = s.dataset.at * width, sw = s.offsetWidth;
+			s.style.transform = `translate(${x - sw / 2}px, ${groundAt(x) - sw * 0.55}px)`;
+		});
 	}
 
 	// Start throwing once the rider is a quarter of the way across; one of each kind, then stop.
@@ -107,5 +122,8 @@
 	};
 	placeMan();
 	requestAnimationFrame(watch);
-	addEventListener('resize', placeMan);
+	addEventListener('resize', () => {
+		placeMan();
+		placeLanded();
+	});
 })();
