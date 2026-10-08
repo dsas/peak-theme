@@ -7,6 +7,14 @@
 	background: linear-gradient(var(--wp--custom--sky--top), var(--wp--custom--sky--bottom));
 }
 
+/* Phones: a shorter sky, so the intro starts above the fold. */
+@media (max-width: 600px) {
+	.peak-hero {
+		min-height: clamp(380px, 56svh, 520px);
+		padding-top: clamp(2rem, 6svh, 3rem);
+	}
+}
+
 .peak-hero__scene {
 	position: absolute;
 	inset: 0;
