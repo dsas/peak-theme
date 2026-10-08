@@ -79,6 +79,35 @@ svg.peak-hero__layer {
 	}
 }
 
+/* The cyclist on the near hill (assets/js/rider.js places it on the ridge). The lamp lights up in Dusk. */
+.peak-rider {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 46px;
+	transform-origin: 50% 100%;
+	pointer-events: none;
+	color: var(--wp--custom--hill--3);
+}
+
+.peak-rider svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: visible;
+}
+
+.peak-rider__lamp {
+	fill: var(--wp--custom--rider--lamp);
+	filter: drop-shadow(0 0 2px var(--wp--custom--rider--lamp)) drop-shadow(0 0 5px var(--wp--custom--rider--glow));
+}
+
+@media (max-width: 600px) {
+	.peak-rider {
+		width: 34px;
+	}
+}
+
 .peak-home-valley {
 	/* -1px hides a sub-pixel seam from the hero gradient at fractional boundaries. */
 	margin-block-start: -1px !important;

@@ -26,7 +26,11 @@
 			"grain": { "strength": "0.35", "blend": "multiply" },
 			"hill": { "1": "#b8c7a4", "2": "#7f9a6c", "3": "#3d5a3a" },
 			"valley": { "text": "#f4efe4", "accent": "#cbd8b0" },
-			"sky": { "top": "#e9e4ea", "bottom": "#f4efe4", "sun": "#f2c98a" }
+			"sky": { "top": "#e9e4ea", "bottom": "#f4efe4", "sun": "#f2c98a" },
+			"rider": {
+				"lamp": "transparent",
+				"glow": "transparent"
+			}
 		},
 		"typography": {
 			"fluid": true,

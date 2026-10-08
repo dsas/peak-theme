@@ -22,6 +22,18 @@ add_action(
 	}
 );
 
+// The cyclist on the homepage hills.
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		if ( ! is_front_page() ) {
+			return;
+		}
+		$path = get_theme_file_path( 'assets/js/rider.js' );
+		wp_enqueue_script( 'peak-rider', get_theme_file_uri( 'assets/js/rider.js' ), [], (string) filemtime( $path ), [ 'strategy' => 'defer', 'in_footer' => true ] );
+	}
+);
+
 add_action(
 	'after_setup_theme',
 	function () {
