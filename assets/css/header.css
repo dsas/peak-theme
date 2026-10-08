@@ -52,3 +52,9 @@
 	flex-wrap: wrap;
 	gap: 0.25rem 0.75rem;
 }
+
+/* A heather wavy underline on hover and keyboard focus. Navigation only: in text it's too whimsical. */
+.peak-header .wp-block-navigation-item__content:is(:hover, :focus-visible) {
+	text-decoration: underline wavy var(--wp--preset--color--accent) 1.5px;
+	text-underline-offset: 0.35em;
+}
