@@ -102,6 +102,11 @@ svg.peak-hero__layer {
 	filter: drop-shadow(0 0 2px var(--wp--custom--rider--lamp)) drop-shadow(0 0 5px var(--wp--custom--rider--glow));
 }
 
+.peak-rider__rear {
+	fill: var(--wp--custom--rider--rear);
+	filter: drop-shadow(0 0 2px var(--wp--custom--rider--rear)) drop-shadow(0 0 4px var(--wp--custom--rider--rear-glow));
+}
+
 @media (max-width: 600px) {
 	.peak-rider {
 		width: 34px;

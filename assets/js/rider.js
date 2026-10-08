@@ -29,6 +29,7 @@
 		<circle cx="30.5" cy="4.5" r="3.2" fill="currentColor" stroke="none"/>
 		<polyline class="peak-rider__leg"/>
 		<circle class="peak-rider__lamp" cx="36" cy="12.5" r="1.6" stroke="none"/>
+		<circle class="peak-rider__rear" cx="17.6" cy="20.4" r="1.3" stroke="none"/>
 	</svg>`;
 	scene.appendChild(rider);
 

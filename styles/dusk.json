@@ -23,7 +23,9 @@
 			"sky": { "top": "#1d2340", "bottom": "#2f2a3c", "sun": "#f2b35e" },
 			"rider": {
 				"lamp": "#ffe9a8",
-				"glow": "#ffd36b"
+				"glow": "#ffd36b",
+					"rear": "#ff5a4e",
+					"rear-glow": "#e0303a"
 			}
 		}
 	}

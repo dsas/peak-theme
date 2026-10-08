@@ -29,7 +29,9 @@
 			"sky": { "top": "#e9e4ea", "bottom": "#f4efe4", "sun": "#f2c98a" },
 			"rider": {
 				"lamp": "transparent",
-				"glow": "transparent"
+				"glow": "transparent",
+					"rear": "transparent",
+					"rear-glow": "transparent"
 			}
 		},
 		"typography": {
